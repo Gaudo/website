@@ -1,0 +1,110 @@
+@import 'reset';
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: open sans;
+}
+
+#gaudo-main-wrapper {
+    max-width: 42rem;
+    margin: 0 auto;
+
+}
+
+#gaudo-main-header {
+    display: flex;
+    background-image: url(../img/back.png);
+    border: .1rem solid black;
+    padding: .5rem;
+}
+
+#gaudo-main-author-photo {
+    height: 7rem;
+    width: 7rem;
+    padding: .1rem;
+    background-color: #000;
+    text-align: center;
+    margin-right: 1rem;
+}
+
+#gaudo-main-author-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+#gaudo-main-author-name {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#gaudo-main-author {
+    font-size: 1rem;
+    color: rgba(255,255,255, 0.85);
+    font-weight: bold;
+}
+
+#gaudo-main-menu {
+    display: flex;
+   background: linear-gradient(to bottom, #7f7b7b 0%, #333 100%); /* W3C */
+    height: 2.3rem;
+    justify-content: flex-start;
+}
+
+.gaudo-main-menu-item {
+    color: #fff;
+    font-weight: bold;
+}
+
+.gaudo-main-menu-link {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    padding: 0.6rem;
+}
+
+.gaudo-main-menu-link-noref {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    padding: 0.6rem;
+    cursor: default;
+}
+
+.gaudo-main-menu-item-selected {
+    background-color: #1a1a1a;
+}
+
+
+#gaudo-main-shadow {
+box-shadow: 0 0 14rem .1rem #BB6F31;
+}
+
+#gaudo-main-content {
+    padding: .7rem;
+background-color: #1a1a1a;
+
+}
+
+#gaudo-main-footer {
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+    padding: 1rem;
+font-weight: bold;
+}
+
+.gaudo-main-submenu {
+   display: none;
+}
+
+
+
+

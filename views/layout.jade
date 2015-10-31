@@ -1,0 +1,38 @@
+html(xmlns="http://www.w3.org/1999/xhtml")
+    head
+        block title
+        link(rel="stylesheet" type="text/css" href="/assets/css/style.css")
+        block css
+    body
+        #gaudo-main-wrapper
+            #gaudo-main-shadow
+                header(id="gaudo-main-header")
+                    #gaudo-main-author-photo
+                        img(id="gaudo-main-author-image" src="/assets/img/gaudo.jpg")
+                    #gaudo-main-author
+                        h1(id="gaudo-main-author-name") Francesco Gaudenzi
+                        p Web developer
+                        p Programmatore
+                        p Studente di informatica
+                        p Gamer
+                
+                
+            
+                nav(id="gaudo-main-nav")
+                    ul(id="gaudo-main-menu")
+                        block selected
+                        - var list = {"Home":'/', "Guide":'/guide', "Chi sono": '/chi-sono', "Curriculum": '/curriculum'}
+                        each key,item in list
+                            if selected === item
+                                li(class="gaudo-main-menu-item gaudo-main-menu-item-selected")
+                                   span(class="gaudo-main-menu-link-noref")= item
+                            else
+                                li(class="gaudo-main-menu-item")
+                                    a(href="#{key}" class="gaudo-main-menu-link")= item
+
+                main(id="gaudo-main-content")
+                    block content
+
+            footer(id="gaudo-main-footer")
+                p Sito internet ideato e realizzato da <a href="#">Francesco Gaudenzi</a>
+                p Powered by <a href="https://symfony.com/">Symfony</a>
