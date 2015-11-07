@@ -1,20 +1,15 @@
-'use strict';
+'use strict'
 
-require('dotenv').load();
-var app = require('express')();
+require('dotenv').load()
 
-app.set('view engine', 'jade');
+var express = require('express')
+var router = require('./router')
+var app = express()
 
-app.get(/.*/, function(request, response, next){
-    response.setHeader('Content-Type', 'application/xhtml+xml');
-    next();
-});
+app.enable('case sensitive routing')
+app.enable('strict routing')
+app.set('view engine', 'jade')
 
-app.use(require('./controllers/guides'));
-app.use(require('./controllers/statics'));
+app.use(router(app.get('case sensitive routing'), app.get('strict routing')))
 
-app.all(/.*/, function (request, response) {
-    response.send('NOT FOUND');
-});
-
-app.listen(3000, 'localhost');
+app.listen(3000, 'localhost')
