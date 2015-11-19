@@ -1,15 +1,48 @@
 'use strict'
 
-require('dotenv').load()
+var http = require('http')
 
-var express = require('express')
-var router = require('./router')
-var app = express()
 
-app.enable('case sensitive routing')
-app.enable('strict routing')
-app.set('view engine', 'jade')
+var server = http.createServer(function(request, response) {
+    var routes = require('./routes')
+    var UrlGenerator = require('./UrlGenerator')
+    var urlGenerator = new UrlGenerator(routes)
+    var url = urlGenerator.generate('addGuide', {id: '3', title: 'Mortacci Vostri'})
 
-app.use(router(app.get('case sensitive routing'), app.get('strict routing')))
+    console.log(url)
 
-app.listen(3000, 'localhost')
+    response.redirect = 
+        function(isTemporary, url)
+        {
+            var code = 301
+
+            if(isTemporary)
+                code = 302
+
+            response.writeHead(code, {
+              'Location': url
+            });
+            response.end();
+        }
+
+    routes.some(
+        function(route)
+        {    
+            var UrlClass = require('url')
+            var url = UrlClass.parse(request.url)
+
+            if(request.method.toLowerCase() !== route.method.toLowerCase())
+                return false
+
+            var matchingUrl = url.path.match(route.path)
+            if(matchingUrl === null)
+                return false
+
+            var params = matchingUrl.slice(1)
+            return !route.callback(params, request, response)
+        }
+    )
+})
+
+server.listen(3000, 'localhost')
+
