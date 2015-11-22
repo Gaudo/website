@@ -1,39 +1,36 @@
 'use strict'
 
-var routes = []
 
-routes.push({
-    method: 'get',
-    name: 'showGuide',
-    pattern: /^\/guide\/(\d+)(?:\/([a-zA-Z0-9-]+))?/,
-    generator: '/guide/{id}/{title}',
 
-    callback:
-        function(params, request, response)
-        {
-            if(params[1] === undefined) {
-                return
+module.exports = [
+    {
+        method: 'get',
+        regex: /^\/guide\/(\d+)(?:\/([a-zA-Z0-9-]+))?$/,
+        allowQueryString: false,
+
+        name: 'showGuide',
+        generator: '/guide/{id}/{title}',
+
+        callback:
+            function(params, request, response)
+            {
+                response.render('views/index.jade')
             }
+    },
 
-            response.end()
-        }
-})
+    {
+        method: 'get',
+        regex: /^\/guide\/$/,
+        allowQueryString: false,
 
-routes.push({
-    method: 'get',
-    name: 'addGuide',
-    pattern: /^\/guide\/(\d+)(?:\/([a-zA-Z0-9-]+))?/,
-    generator: '/addguide/{id}/{title}',
+        name: 'guides',
+        generator: '/guide',
 
-    callback:
-        function(params, request, response)
-        {
-            if(params[1] === undefined) {
-                return
+        callback:
+            function(params, request, response)
+            {
+                response.end()
             }
+    }
+]
 
-            response.end()
-        }
-})
-
-module.exports = routes
