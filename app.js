@@ -1,21 +1,33 @@
 'use strict'
 
-var http = require('http')
+var readdirp = require('readdirp')
+var template = require('jade')
+var templateOptions = {debug: false, compileDebug: false, cache: false, pretty: true}
 
-var server = http.createServer(
+var views = 'views/'
+var recursiveReading = readdirp({ root: views, fileFilter: '*.jade' })
+    .on('data',
+        function (entry)
+        {
+            template.compileFile(views+entry.path, templateOptions)
+        }
+    )
+
+var server = require('http').createServer(
     function (request, response) 
     {
-        var template = require('jade')
+
         var routes = require('./routes')
 
         response.render =
             function(filePath, locals)
             {
+                console.log(filePath)
                 var UrlGenerator = require('./UrlGenerator')
                 var urlGenerator = new UrlGenerator(routes)
                 locals = locals || {}
                 locals.getRouteUrl = urlGenerator.generate
-                var fn = template.compileFile(filePath)
+                var fn = template.compileFile(filePath, templateOptions)
                 response.setHeader('Content-Type', 'application/xhtml+xml');
                 response.end(fn(locals))
             }
@@ -64,5 +76,10 @@ var server = http.createServer(
     }
 )
 
-server.listen(3000, 'localhost')
+recursiveReading.on('end',
+    function()
+    {
+        server.listen(3000, 'localhost')
+    }
+)
 
