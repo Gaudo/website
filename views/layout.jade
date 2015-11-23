@@ -19,7 +19,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                 nav(id="gaudo-main-nav")
                     ul(id="gaudo-main-menu")
                         block selected
-                        - var list = {"Home": getRouteUrl('showGuide', {id: '3', title: 'LOLL ASD'}), "Guide": '/guide', "Chi sono": '/chi-sono', "Curriculum": '/curriculum'}
+                        - var list = {"Home": getRouteUrl('home'), "Progetti": getRouteUrl('projects'), "Chi sono": getRouteUrl('about_me'), "Curriculum": getRouteUrl('curriculum')}
                         each key,item in list
                             if selected === item
                                 li(class="gaudo-main-menu-item gaudo-main-menu-item-selected")

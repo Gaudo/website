@@ -3,11 +3,11 @@
 module.exports = [
     {
         method: 'get',
-        regex: /^\/guide\/(\d+)(?:\/([a-zA-Z0-9-]+))?$/,
+        regex: /^\/$/,
         allowQueryString: false,
 
-        name: 'showGuide',
-        generator: '/guide/{id}/{title}',
+        name: 'home',
+        generator: '/',
 
         callback:
             function(params, request, response)
@@ -18,16 +18,46 @@ module.exports = [
 
     {
         method: 'get',
-        regex: /^\/guide\/$/,
+        regex: /^\/curriculum$/,
         allowQueryString: false,
 
-        name: 'guides',
-        generator: '/guide',
+        name: 'curriculum',
+        generator: '/curriculum',
 
         callback:
             function(params, request, response)
             {
-                response.end()
+                response.render('views/curriculum.jade')
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/progetti$/,
+        allowQueryString: false,
+
+        name: 'projects',
+        generator: '/progetti',
+
+        callback:
+            function(params, request, response)
+            {
+                response.render('views/projects.jade')
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/chi-sono$/,
+        allowQueryString: false,
+
+        name: 'about_me',
+        generator: '/chi-sono',
+
+        callback:
+            function(params, request, response)
+            {
+                response.render('views/about_me.jade')
             }
     }
 ]
