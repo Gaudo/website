@@ -5,7 +5,8 @@ var template = require('jade')
 var templateOptions = {debug: false, compileDebug: false, cache: true, pretty: false}
 var Promise = require('promise')
 var fs = require('fs')
-var views = 'views/'
+var path = require('path')
+var views = 'views'
 
 var server = require('http').createServer()
     .on('request', function (request, response) 
@@ -19,7 +20,7 @@ var server = require('http').createServer()
                     var urlGenerator = new UrlGenerator(routes)
                     locals = locals || {}
                     locals.getRouteUrl = urlGenerator.generate
-                    var fn = template.compileFile(filePath, templateOptions)
+                    var fn = template.compileFile(path.join(views, filePath), templateOptions)
                     response.setHeader('Content-Type', 'application/xhtml+xml');
                     if(!code)
                         code = 200
@@ -50,9 +51,9 @@ var server = require('http').createServer()
                     if(route.method !== undefined && request.method.toUpperCase() !== route.method.toUpperCase())
                         return false
 
-                    var isDefinedQueryString = parsedUrl.query !== null
+                    var isQueryStringAvailable = parsedUrl.query !== null
 
-                    if(!route.allowQueryString && isDefinedQueryString)
+                    if(!route.allowQueryString && isQueryStringAvailable)
                         return false
 
                     var matchingUrl = parsedUrl.pathname.match(route.regex)
@@ -62,12 +63,12 @@ var server = require('http').createServer()
 
                     var params = matchingUrl.slice(1)       
 
-                    return !route.callback(params, request, response)
+                    return !route.callback(request, response, params)
                 }
             )
 
             if(!result)
-                response.render('views/errors/404.jade', {} , 404)
+                response.render('errors/404.jade', {} , 404)
         }
     )
 
@@ -102,20 +103,21 @@ readdirp({ root: views, fileFilter: '*.jade' })
         {
             var dir = '/tmp/socks'
             var file = 'gaudo-net.sock'
+            var filePath = path.join(dir, file)
 
             if(!fs.existsSync(dir))
                 fs.mkdirSync(dir, 755)
 
-            if(fs.existsSync(dir+'/'+file))
-                fs.rmdirSync(dir+'/'+file)
+            if(fs.existsSync(filePath))
+                fs.rmdirSync(filePath)
 
-            server.listen(dir+'/'+file)
+            server.listen(filePath)
         }
     )
     .on('data',
         function (entry)
         {
-            template.compileFile(views+entry.path, templateOptions)
+            template.compileFile(path.join(views, entry.path), templateOptions)
         }
     )
 

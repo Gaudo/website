@@ -3,6 +3,27 @@
 module.exports = [
     {
         method: 'get',
+        regex: /\/.*/,
+        allowQueryString: true,
+
+        callback:
+            function(request, response)
+            {
+                var UrlClass = require('url')
+                var parsedUrl = UrlClass.parse(request.url)
+                var upperCaseFound = /[A-Z]/g.test(parsedUrl.path)
+
+                if(upperCaseFound) {
+                    response.redirect(parsedUrl.path.toLowerCase())
+                    return false
+                }
+
+                return true
+            }
+    },
+
+    {
+        method: 'get',
         regex: /^\/$/,
         allowQueryString: false,
 
@@ -10,9 +31,9 @@ module.exports = [
         generator: '/',
 
         callback:
-            function(params, request, response)
+            function(request, response, params)
             {
-                response.render('views/index.jade')
+                response.render('index.jade')
             }
     },
 
@@ -25,9 +46,9 @@ module.exports = [
         generator: '/curriculum',
 
         callback:
-            function(params, request, response)
+            function(request, response, params)
             {
-                response.render('views/curriculum.jade')
+                response.render('curriculum.jade')
             }
     },
 
@@ -40,9 +61,9 @@ module.exports = [
         generator: '/progetti',
 
         callback:
-            function(params, request, response)
+            function(request, response, params)
             {
-                response.render('views/projects.jade')
+                response.render('projects.jade')
             }
     },
 
@@ -55,9 +76,9 @@ module.exports = [
         generator: '/chi-sono',
 
         callback:
-            function(params, request, response)
+            function(request, response, params)
             {
-                response.render('views/about_me.jade')
+                response.render('about_me.jade')
             }
     }
 ]
