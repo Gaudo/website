@@ -97,7 +97,7 @@ process.on('SIGINT',
 )
 
 readdirp({ root: views, fileFilter: '*.jade' })
-    .on('end',
+    .once('end',
         function()
         {
             var dir = '/tmp/socks'

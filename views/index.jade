@@ -1,44 +1,7 @@
 extends ./layout.jade
 
 block css
-    style(type='text/css').
-        #gaudo-view-content-title {
-          font-weight: bold;
-          font-size: 1.5rem;
-          color: #fff;
-          background-color: #444;
-          padding: .2rem .5rem 0 .5rem;
-          display: inline-block; }
 
-        .gaudo-view-article {
-          background-color: #252525;
-          margin-bottom: .1rem;
-          padding: .2rem;
-          color: #ddd;
-          display: flex; }
-
-        .gaudo-view-article-title {
-          background: linear-gradient(to bottom, #BD7031 0%, #333 100%);
-          padding: .5rem;
-          margin-bottom: .2rem;
-          font-weight: bold;
-          color: #fff; }
-
-        .gaudo-view-article-link {
-          text-decoration: none; }
-
-        .gaudo-view-article-body {
-          padding: .1rem; }
-
-        .gaudo-view-article-image {
-          width: 7rem;
-          height: 7rem;
-          margin-right: .2rem;
-          background-color: #111; }
-
-        #gaudo-view-article-list {
-          background-color: #444;
-          padding: .1rem; }
 
 block title
     title Gaudo.net
@@ -49,7 +12,7 @@ block selected
 block content
     ul
         li
-            a(href="#" class="gaudo-view-article-link")
+            a(href="#" class="GaudoNet_site-page__article--link")
                 article(class="gaudo-view-article")
                     img(class="gaudo-view-article-image" src="img/gaudo.jpg")
                     div
