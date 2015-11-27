@@ -1,18 +1,58 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-* {
-    box-sizing: border-box;
+@font-face {
+    font-family: Open Sans;
+    src:
+        url('/assets/fonts/Open-Sans-regular.woff2') format('woff2'),
+        url('/assets/fonts/Open-Sans-regular.woff') format('woff');
 }
 
 body {
     background-color: #000;
-    font-family: open sans;
+    font-family: Open Sans;
 }
 
 .GaudoNet {
+    &__siteContent_section {
+        margin-bottom: 1rem;
+        flex-grow: 1;
+    }    
+
+    &__siteContent_dualSection {
+        @extend .GaudoNet__siteContent_section;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+
+    &__siteContent_section_title {
+        margin: 0;
+        font-size: 1.2rem;
+        background-color: #333;
+        position: relative;
+        top: 1px;
+        border: 1px solid #111;
+        border-bottom: 0;
+        display: inline-block;
+        padding: .2rem .4rem .2rem .4rem;
+    }    
+
+    &__siteContent_box{
+        padding: 1.4rem;
+        background-color: #333;
+        margin: 0;
+        line-height: 1.4rem;
+    }
+
+    &__siteContent_paragraph {
+        margin: 0 0 1rem 0;
+    }
+
+
+    
     &__picture {
         text-align: center;
-        padding: .1rem;
+        padding: 2px;
         background-color: #000;
 
         &_image {
@@ -27,26 +67,22 @@ body {
         }
 
         &_item {
-            color: #fff;
             font-weight: bold;
         }
 
         &_item-selected {
+            @extend .GaudoNet__siteMenu_item;
             background-color: #1a1a1a;
         }
 
         &_link {
             color: #fff;
             text-decoration: none;
-            width: 100%;
-            height: 100%;
             display: inline-block;
             padding: 0.6rem;
         }
         
         &_link-noref {
-            width: 100%;
-            height: 100%;
             display: inline-block;
             padding: 0.6rem;
             cursor: default;
@@ -58,6 +94,7 @@ body {
     &__siteWrapper {
         max-width: 42rem;
         margin: 0 auto;
+        color: #fff;
     }
 
     &__siteHeader {
@@ -74,14 +111,22 @@ body {
 
         &_name {
             font-size: 1.5rem;
+            margin:0;
             margin-bottom: 1rem;
+        }
+        
+        &_jobs {
+            font-size: .8rem;
+            margin: 0;
+            padding-left: 1rem;
+            font-weight: none;
         }
 
         &_picture {
             height: 7rem;
             width: 7rem;
-            margin-right: 1rem;
-            @extend .GaudoNet__picture_image;
+            margin-right: 2rem;
+            @extend .GaudoNet__picture;
 
             &_image {
                 @extend .GaudoNet__picture_image;
@@ -97,16 +142,18 @@ body {
         display: flex;
         background: linear-gradient(to bottom, #7f7b7b 0%, #333 100%); /* W3C */
         height: 2.3rem;
+        list-style-type: none;
         justify-content: flex-start;
+        margin: 0;
+        padding:0;
     }
 
     &__siteContent {
-        padding: .7rem;
+        padding: 1.2rem;
         background-color: #1a1a1a;
     }
 
     &__siteFooter {
-        color: #fff;
         font-size: .8rem;
         text-align: center;
         padding: 1rem;

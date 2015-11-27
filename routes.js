@@ -33,7 +33,13 @@ module.exports = [
         callback:
             function(request, response, params)
             {
-                response.render('index.jade')
+                var birthday = {year: 1990, month: 12, day: 12}
+                var today = new Date()
+                var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
+                var years = today.year - birthday.year
+                if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
+                    --years
+                response.render('index.jade', {'years': years})
             }
     },
 
@@ -49,21 +55,6 @@ module.exports = [
             function(request, response, params)
             {
                 response.render('curriculum.jade')
-            }
-    },
-
-    {
-        method: 'get',
-        regex: /^\/progetti$/,
-        allowQueryString: false,
-
-        name: 'projects',
-        generator: '/progetti',
-
-        callback:
-            function(request, response, params)
-            {
-                response.render('projects.jade')
             }
     },
 

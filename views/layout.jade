@@ -4,33 +4,36 @@ html(xmlns="http://www.w3.org/1999/xhtml")
         link(rel="stylesheet" type="text/css" href="/assets/css/style.css")
         block css
     body
-        #gaudo-main-wrapper
-            #gaudo-main-shadow
-                header(id="gaudo-main-header")
-                    #gaudo-main-author-photo
-                        img(id="gaudo-main-author-image" src="/assets/img/gaudo.jpg")
-                    #gaudo-main-author
-                        h1(id="gaudo-main-author-name") Francesco Gaudenzi
-                        p Web developer
-                        p Programmatore
-                        p Studente di informatica
-                        p Gamer
+        #GaudoNet__siteWrapper
+            #GaudoNet__siteGradient
+                header#GaudoNet__siteHeader
+                    #GaudoNet__siteAuthor_picture
+                        img(id="GaudoNet__siteAuthor_picture_image" src="/assets/img/gaudo.jpg")
+                    #GaudoNet__siteAuthor
+                        h1#GaudoNet__siteAuthor_name Francesco Gaudenzi
+                        ul#GaudoNet__siteAuthor_jobs
+                            li Web Developer
+                            li Programmatore
+                            li Studente di informatica
+                            li Gamer
                 
-                nav(id="gaudo-main-nav")
-                    ul(id="gaudo-main-menu")
+                nav
+                    ul#GaudoNet__siteMenu
                         block selected
-                        - var list = {"Home": getRouteUrl('home'), "Progetti": getRouteUrl('projects'), "Chi sono": getRouteUrl('about_me'), "Curriculum": getRouteUrl('curriculum')}
+                        - var list = {"Home": getRouteUrl('home'), "Competenze": getRouteUrl('curriculum')}
                         each key,item in list
                             if selected === item
-                                li(class="gaudo-main-menu-item gaudo-main-menu-item-selected")
-                                   span(class="gaudo-main-menu-link-noref")= item
+                                li.GaudoNet__siteMenu_item-selected
+                                   span(class="GaudoNet__siteMenu_link-noref")= item
                             else
-                                li(class="gaudo-main-menu-item")
-                                    a(href="#{key}" class="gaudo-main-menu-link")= item
+                                li.GaudoNet__siteMenu_item
+                                    a(href="#{key}" class="GaudoNet__siteMenu_link")= item
 
-                main(id="gaudo-main-content")
+                        li.GaudoNet__siteMenu_item
+                             span.GaudoNet__siteMenu_link-noref Progetti
+                main#GaudoNet__siteContent
                     block content
 
-            footer(id="gaudo-main-footer")
-                p Sito internet ideato e realizzato da <a href="#">Francesco Gaudenzi</a>
-                p Powered by <a href="https://symfony.com/">Symfony</a>
+            footer#GaudoNet__siteFooter
+                p Sito internet ideato e realizzato dall'autore.
+                p Tutti i diritti riservati.

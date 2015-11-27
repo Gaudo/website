@@ -2,7 +2,7 @@
 
 var readdirp = require('readdirp')
 var template = require('jade')
-var templateOptions = {debug: false, compileDebug: false, cache: true, pretty: false}
+var templateOptions = {debug: false, compileDebug: false, cache: true, pretty: true}
 var Promise = require('promise')
 var fs = require('fs')
 var path = require('path')
