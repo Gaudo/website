@@ -20,7 +20,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                 nav
                     ul#GaudoNet__siteMenu
                         block selected
-                        - var list = {"Home": getRouteUrl('home'), "Competenze": getRouteUrl('curriculum')}
+                        - var list = {"Home": getRouteUrl('home'), "Competenze": getRouteUrl('curriculum'), "Chi sono": getRouteUrl('about_me')}
                         each key,item in list
                             if selected === item
                                 li.GaudoNet__siteMenu_item-selected

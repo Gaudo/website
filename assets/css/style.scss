@@ -3,53 +3,39 @@
     src:
         url('/assets/fonts/Open-Sans-regular.woff2') format('woff2'),
         url('/assets/fonts/Open-Sans-regular.woff') format('woff');
+
+}
+
+@font-face {
+    font-family: Source Serif Pro;
+    src:
+        url('/assets/fonts/Source-Serif-Pro-regular.woff2') format('woff2'),
+        url('/assets/fonts/Source-Serif-Pro-regular.woff') format('woff');
 }
 
 body {
-    background-color: #000;
+    background-image: url(../img/back3.png);
+    background-repeat: repeat;
     font-family: Open Sans;
 }
 
 .GaudoNet {
-    &__siteContent_section {
-        margin-bottom: 1rem;
-        flex-grow: 1;
+    
+    &__siteContent_title {
+        margin: 0 0 1rem 0;
+        padding: .5rem;
+        font-size: 2rem;
+        display: block;
+        color: #533524;
+        background-color: #eeddcc;
+        font-family: Source Serif Pro
     }    
 
-    &__siteContent_dualSection {
-        @extend .GaudoNet__siteContent_section;
-        
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-
-    &__siteContent_section_title {
-        margin: 0;
-        font-size: 1.2rem;
-        background-color: #333;
-        position: relative;
-        top: 1px;
-        border: 1px solid #111;
-        border-bottom: 0;
-        display: inline-block;
-        padding: .2rem .4rem .2rem .4rem;
-    }    
-
-    &__siteContent_box{
-        padding: 1.4rem;
-        background-color: #333;
-        margin: 0;
-        line-height: 1.4rem;
-    }
 
     &__siteContent_paragraph {
         margin: 0 0 1rem 0;
     }
-
-
-    
+ 
     &__picture {
         text-align: center;
         padding: 2px;
@@ -83,6 +69,7 @@ body {
         }
         
         &_link-noref {
+            color: #fff;
             display: inline-block;
             padding: 0.6rem;
             cursor: default;
@@ -94,7 +81,6 @@ body {
     &__siteWrapper {
         max-width: 42rem;
         margin: 0 auto;
-        color: #fff;
     }
 
     &__siteHeader {
@@ -133,14 +119,19 @@ body {
             }
         }
     }
-
+/*
     &__siteGradient {
         box-shadow: 0 0 14rem .1rem #BB6F31;
+    }
+*/
+
+    &__siteGradient {
+        box-shadow: 0 0 1rem .1rem #000;
     }
 
     &__siteMenu {
         display: flex;
-        background: linear-gradient(to bottom, #7f7b7b 0%, #333 100%); /* W3C */
+        background: linear-gradient(to bottom, #83553A 0%, #222 100%); /* W3C */
         height: 2.3rem;
         list-style-type: none;
         justify-content: flex-start;
@@ -150,7 +141,9 @@ body {
 
     &__siteContent {
         padding: 1.2rem;
-        background-color: #1a1a1a;
+        background-color: #fff;
+        min-height: 30rem;
+        color: #111;
     }
 
     &__siteFooter {

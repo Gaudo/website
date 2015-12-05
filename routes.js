@@ -33,13 +33,8 @@ module.exports = [
         callback:
             function(request, response, params)
             {
-                var birthday = {year: 1990, month: 12, day: 12}
-                var today = new Date()
-                var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
-                var years = today.year - birthday.year
-                if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
-                    --years
-                response.render('index.jade', {'years': years})
+
+                response.render('index.jade')
             }
     },
 
@@ -69,7 +64,14 @@ module.exports = [
         callback:
             function(request, response, params)
             {
-                response.render('about_me.jade')
+                var birthday = {year: 1990, month: 12, day: 12}
+                var today = new Date()
+                var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
+                var years = today.year - birthday.year
+                if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
+                    --years
+
+                response.render('about_me.jade', {'years': years})
             }
     }
 ]
