@@ -1,3 +1,6 @@
+$font-sans: Open Sans;
+$font-serif: Source Serif Pro;
+
 @font-face {
     font-family: Open Sans;
     src:
@@ -16,11 +19,34 @@
 body {
     background-image: url(../img/back3.png);
     background-repeat: repeat;
-    font-family: Open Sans;
 }
 
 .GaudoNet {
+    &__siteContent_list {
+        font-family: $font-sans;
+        padding-left:1rem
+    }
+
+    &__siteContent_list_item {
+        margin: 0 0 1rem 0;
+    }
     
+    &__siteContent_rightPicture {
+        width: 250px;
+        height: 250px;
+        text-align: center;
+        float: right;
+        margin: 0 0 2rem 2rem; 
+    }    
+
+    &__siteContent_image {
+        display: inline-block;
+        max-width: 250px;
+        max-height: 250px;
+        border: 1px solid #000;
+        border-radius: 12px
+    }    
+
     &__siteContent_title {
         margin: 0 0 1rem 0;
         padding: .5rem;
@@ -28,12 +54,13 @@ body {
         display: block;
         color: #533524;
         background-color: #eeddcc;
-        font-family: Source Serif Pro
+        font-family: $font-serif
     }    
 
 
     &__siteContent_paragraph {
         margin: 0 0 1rem 0;
+        font: 100% $font-sans;
     }
  
     &__picture {
@@ -91,6 +118,7 @@ body {
     }
 
     &__siteAuthor {
+        font: 100% $font-sans;
         font-size: 1rem;
         color: rgba(255,255,255, 0.85);
         font-weight: bold;
@@ -130,6 +158,7 @@ body {
     }
 
     &__siteMenu {
+        font: 100% $font-sans;
         display: flex;
         background: linear-gradient(to bottom, #83553A 0%, #222 100%); /* W3C */
         height: 2.3rem;

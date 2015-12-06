@@ -9,9 +9,29 @@
 body {
   background-image: url(../img/back3.png);
   background-repeat: repeat;
-  font-family: Open Sans;
 }
 
+.GaudoNet__siteContent_list {
+  font-family: Open Sans;
+  padding-left: 1rem;
+}
+.GaudoNet__siteContent_list_item {
+  margin: 0 0 1rem 0;
+}
+.GaudoNet__siteContent_rightPicture {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  float: right;
+  margin: 0 0 2rem 2rem;
+}
+.GaudoNet__siteContent_image {
+  display: inline-block;
+  max-width: 250px;
+  max-height: 250px;
+  border: 1px solid #000;
+  border-radius: 12px;
+}
 .GaudoNet__siteContent_title {
   margin: 0 0 1rem 0;
   padding: .5rem;
@@ -23,6 +43,7 @@ body {
 }
 .GaudoNet__siteContent_paragraph {
   margin: 0 0 1rem 0;
+  font: 100% Open Sans;
 }
 .GaudoNet__picture, #GaudoNet__siteAuthor_picture {
   text-align: center;
@@ -73,6 +94,7 @@ body {
   padding: .5rem;
 }
 #GaudoNet__siteAuthor {
+  font: 100% Open Sans;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.85);
   font-weight: bold;
@@ -97,6 +119,7 @@ body {
   box-shadow: 0 0 1rem .1rem #000;
 }
 #GaudoNet__siteMenu {
+  font: 100% Open Sans;
   display: flex;
   background: linear-gradient(to bottom, #83553A 0%, #222 100%);
   /* W3C */

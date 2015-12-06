@@ -73,6 +73,21 @@ module.exports = [
 
                 response.render('about_me.jade', {'years': years})
             }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/competenze$/,
+        allowQueryString: false,
+
+        name: 'skills',
+        generator: '/competenze',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('skills.jade')
+            }
     }
 ]
 

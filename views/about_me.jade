@@ -3,7 +3,7 @@ extends ./layout.jade
 block css
 
 block title
-    title Chi sono - Francesco Gaudenzi
+    -var title = 'Chi sono'
 
 block selected
     -var selected = 'Chi sono'
@@ -11,9 +11,8 @@ block selected
 block content
 
     h1.GaudoNet__siteContent_title Chi sono
-    div(style="width: 250px; height: 250px; text-align: center; float: right;margin: 0 0 2rem 2rem; ")            
-        img(src="/assets/img/gaudo.png" style="display: inline-block;max-width: 250px; max-height: 250px;border: 1px solid #000" )
-
+    .GaudoNet__siteContent_rightPicture
+        img.GaudoNet__siteContent_image(src="/assets/img/gaudo.png")
     p.GaudoNet__siteContent_paragraph.
          Mi chiamo <strong>Francesco</strong>, ho #{years} anni e sono un appassionato di informatica.
     p.GaudoNet__siteContent_paragraph.
