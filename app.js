@@ -3,7 +3,6 @@
 var readdirp = require('readdirp')
 var template = require('jade')
 var templateOptions = {debug: false, compileDebug: false, cache: true, pretty: true}
-var Promise = require('promise')
 var fs = require('fs')
 var path = require('path')
 var views = 'views'
@@ -109,8 +108,9 @@ readdirp({ root: views, fileFilter: '*.jade' })
                 fs.mkdirSync(dir, 755)
 
             if(fs.existsSync(filePath))
-                fs.rmdirSync(filePath)
+                fs.unlinkSync(filePath)
 
+            
             server.listen(filePath)
         }
     )

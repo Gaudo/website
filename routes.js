@@ -33,7 +33,6 @@ module.exports = [
         callback:
             function(request, response, params)
             {
-
                 response.render('index.jade')
             }
     },
