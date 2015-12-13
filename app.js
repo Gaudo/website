@@ -1,51 +1,54 @@
 'use strict'
 
-var readdirp = require('readdirp')
-var template = require('jade')
-var templateOptions = {debug: false, compileDebug: false, cache: true, pretty: true}
-var fs = require('fs')
-var path = require('path')
-var views = 'views'
+var VIEWS_DIRECTORY = 'views'
+var CACHE = false
+var PRETTY_FORMAT = true
+
+/*
+ *******************************
+ *******************************
+ ******* DRAGONS AHEAD!! *******
+ *******************************
+ *******************************
+*/
+
+var jadeOptions = {cache: CACHE, pretty: PRETTY_FORMAT}
+var createAsyncReadDirHandler = require('readdirp')
+var Filesystem = require('fs')
+var Path = require('path')
+var Jade = require('jade')
+var Url = require('url')
+
+var TemplateRouter = require('./TemplateRouter')
+var templateRouter = new TemplateRouter(routes, jadeOptions)
 
 var server = require('http').createServer()
-    .on('request', function (request, response) 
+    .on('request',
+        function (request, response) 
         {
-            var routes = require('./routes')
-
-            response.render =
-                function (filePath, locals, code)
-                {
-                    var UrlGenerator = require('./UrlGenerator')
-                    var urlGenerator = new UrlGenerator(routes)
-                    locals = locals || {}
-                    locals.getRouteUrl = urlGenerator.generate
-                    var fn = template.compileFile(path.join(views, filePath), templateOptions)
-                    response.setHeader('Content-Type', 'application/xhtml+xml');
-                    if(!code)
-                        code = 200
-                    response.statusCode = code
-                    response.end(fn(locals))
-                }
-
-            response.redirect = 
-                function (url, isTemporary)
-                {
-                    var code = 301
-
-                    if(isTemporary)
-                        code = 302
-
-                    response.writeHead(code, {
-                      'Location': url
-                    });
-                    response.end();
-                }
-
+            response.render = function (filePath, locals, code) {
+                response.setHeader('Content-Type', 'application/xhtml+xml')
+                var html = templateRouter.render(filePath, locals, code)
+                if(!code)
+                    code = 200
+                response.statusCode = code
+                response.end(html)
+            }
+            
+            response.redirect = function(code, isTemporary) {
+                var code = 301
+                if(isTemporary)
+                    code = 302
+                response.writeHead(code, {
+                  'Location': url
+                });
+                response.end();
+            }
+            
             var result = routes.some(
                 function (route)
                 {    
-                    var UrlClass = require('url')
-                    var parsedUrl = UrlClass.parse(request.url)
+                    var parsedUrl = Url.parse(request.url)
 
                     if(route.method !== undefined && request.method.toUpperCase() !== route.method.toUpperCase())
                         return false
@@ -96,28 +99,27 @@ process.on('SIGINT',
     }    
 )
 
-readdirp({ root: views, fileFilter: '*.jade' })
+createAsyncReadDirHandler({ root: VIEWS_DIRECTORY, fileFilter: '*.jade' })
     .once('end',
         function()
         {
             var dir = '/tmp/socks'
             var file = 'gaudo-net.sock'
-            var filePath = path.join(dir, file)
+            var filePath = Path.join(dir, file)
 
-            if(!fs.existsSync(dir))
-                fs.mkdirSync(dir, 755)
+            if(!Filesystem.existsSync(dir))
+                Filesystem.mkdirSync(dir, 755)
 
-            if(fs.existsSync(filePath))
-                fs.unlinkSync(filePath)
+            if(Filesystem.existsSync(filePath))
+                Filesystem.unlinkSync(filePath)
 
-            
             server.listen(filePath)
         }
     )
     .on('data',
         function (entry)
         {
-            template.compileFile(path.join(views, entry.path), templateOptions)
+            Jade.compileFile(Path.join(VIEWS_DIRECTORY, entry.path), jadeOptions)
         }
     )
 
