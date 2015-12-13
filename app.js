@@ -18,32 +18,38 @@ var Filesystem = require('fs')
 var Path = require('path')
 var Jade = require('jade')
 var Url = require('url')
+var routes = require('./routes')
 
 var TemplateRouter = require('./TemplateRouter')
-var templateRouter = new TemplateRouter(routes, jadeOptions)
+var templateRouter = new TemplateRouter(VIEWS_DIRECTORY, jadeOptions, routes)
 
 var server = require('http').createServer()
     .on('request',
         function (request, response) 
         {
-            response.render = function (filePath, locals, code) {
-                response.setHeader('Content-Type', 'application/xhtml+xml')
-                var html = templateRouter.render(filePath, locals, code)
-                if(!code)
-                    code = 200
-                response.statusCode = code
-                response.end(html)
-            }
+            response.render =
+                function (filePath, locals, code)
+                {
+                    var html = templateRouter.render(filePath, locals, code)
+                    if(!code)
+                        code = 200
+
+                    response.setHeader('Content-Type', 'application/xhtml+xml')
+                    response.statusCode = code
+                    response.end(html)
+                }
             
-            response.redirect = function(code, isTemporary) {
-                var code = 301
-                if(isTemporary)
-                    code = 302
-                response.writeHead(code, {
-                  'Location': url
-                });
-                response.end();
-            }
+            response.redirect =
+                function(code, isTemporary)
+                {
+                    var code = 301
+                    if(isTemporary)
+                        code = 302
+                    response.writeHead(code, {
+                      'Location': url
+                    });
+                    response.end();
+                }
             
             var result = routes.some(
                 function (route)

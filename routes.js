@@ -87,6 +87,21 @@ module.exports = [
             {
                 response.render('skills.jade')
             }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/guide$/,
+        allowQueryString: false,
+
+        name: 'guides',
+        generator: '/guide',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('guides.jade')
+            }
     }
 ]
 

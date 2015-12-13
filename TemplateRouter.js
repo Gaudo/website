@@ -3,7 +3,7 @@ var Path = require('path')
 var UrlGenerator = require('./UrlGenerator')
 
 module.exports = 
-    function (jadeOptions, routes)
+    function (views, jadeOptions, routes)
     {
         this.render =
             function (filePath, locals)

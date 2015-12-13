@@ -23,7 +23,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                 nav
                     ul#GaudoNet__siteMenu
                         block selected
-                        - var list = {"Home": getRouteUrl('home'), "Competenze": getRouteUrl('skills'), "Chi sono": getRouteUrl('about_me')}
+                        - var list = {"Home": getRouteUrl('home'), "Guide": getRouteUrl('guides'), "Competenze": getRouteUrl('skills'), "Chi sono": getRouteUrl('about_me')}
                         each key,item in list
                             if selected === item
                                 li.GaudoNet__siteMenu_item-selected
@@ -32,11 +32,9 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                                 li.GaudoNet__siteMenu_item
                                     a(href="#{key}" class="GaudoNet__siteMenu_link")= item
 
-                        li.GaudoNet__siteMenu_item
-                             span.GaudoNet__siteMenu_link-noref Progetti
                 main#GaudoNet__siteContent
                     block content
 
             footer#GaudoNet__siteFooter
-                p Sito internet ideato e realizzato dall'autore.
-                p Tutti i diritti riservati.
+                p.GaudoNet__siteFooter_line Sito internet ideato e realizzato dall'autore.
+                p.GaudoNet__siteFooter_line Tutti i diritti riservati.

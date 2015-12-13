@@ -107,6 +107,14 @@ body {
             cursor: default;
         }
     }
+
+    &__siteFooter {
+        &_line {
+            color: #fff;
+            font: 100% $font-sans;
+            margin:0;
+        }
+    }
 }
 
 #GaudoNet {
@@ -181,10 +189,8 @@ body {
     }
 
     &__siteFooter {
-        font-size: .8rem;
         text-align: center;
         padding: 1rem;
-        font-weight: bold;
     }
 }
 
