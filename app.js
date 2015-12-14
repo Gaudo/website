@@ -1,26 +1,23 @@
 'use strict'
 
-var VIEWS_DIRECTORY = 'views'
-var CACHE = false
-var PRETTY_FORMAT = true
-
-/*
- *******************************
- *******************************
- ******* DRAGONS AHEAD!! *******
- *******************************
- *******************************
-*/
-
-var jadeOptions = {cache: CACHE, pretty: PRETTY_FORMAT}
-var createAsyncReadDirHandler = require('readdirp')
-var Filesystem = require('fs')
 var Path = require('path')
+var Filesystem = require('fs')
 var Jade = require('jade')
 var Url = require('url')
+var createAsyncReadDirHandler = require('readdirp')
+var TemplateRouter = require('./TemplateRouter')
 var routes = require('./routes')
 
-var TemplateRouter = require('./TemplateRouter')
+var VIEWS_DIRECTORY = Path.join(__dirname, 'views')
+var CACHE = false
+var PRETTY = true
+
+if(process.env.NODE_ENV === 'production') {
+    CACHE = true
+    PRETTY = false
+}
+
+var jadeOptions = {cache: CACHE, pretty: PRETTY}
 var templateRouter = new TemplateRouter(VIEWS_DIRECTORY, jadeOptions, routes)
 
 var server = require('http').createServer()
