@@ -1,14 +1,24 @@
-module.exports = router = require('express').Router();
+module.exports.home =
+    function(request, response)
+    {
+        response.render('index')
+    }
 
-router.get(/^\/chi-sono$/, function (request, response) {
-        response.render('chi_sono');
-});
+module.exports.skills =
+    function(request, response)
+    {
+        response.render('skills')
+    }
 
-router.get(/^\/curriculum-vitae$/, function (request, response) {
+module.exports.aboutMe =
+    function(request, response)
+    {
+        var birthday = {year: 1990, month: 12, day: 12}
+        var today = new Date()
+        var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
+        var years = today.year - birthday.year
+        if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
+            --years
 
-});
-
-router.get(/^\/$/, function (request, response) {
-    response.render('index.jade', {});
-});
-
+        response.render('about_me', {'years': years})
+    }

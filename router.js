@@ -1,0 +1,20 @@
+var router = require('express').Router()
+var middlewares = require('./middlewares')
+var staticController = require('./controllers/statics')
+// var guidesController = require('./controllers/guides')
+
+var disableQueryString = middlewares.disableQueryString
+router.use(middlewares.redirectToLowercase)
+
+router.get('/', disableQueryString, staticController.home)
+router.get('/competenze', disableQueryString, staticController.skills)
+router.get('/chi-sono',   disableQueryString, staticController.aboutMe)
+
+/*
+router.get('/guide/', guidesController.showAll)
+router.get('/guide/:id', disableQueryString, guidesController.show)
+router.post('/guide/', disableQueryString, guidesController.delete)
+router.put('/guide/:id', disableQueryString, guidesController.edit)
+*/
+
+module.exports = router

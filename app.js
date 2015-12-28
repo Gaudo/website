@@ -5,7 +5,7 @@ var Filesystem = require('fs')
 var Jade = require('jade')
 var Url = require('url')
 var createAsyncReadDirHandler = require('readdirp')
-var TemplateRouter = require('./TemplateRouter')
+var TemplateRenderer = require('./TemplateRenderer')
 var routes = require('./routes')
 
 var VIEWS_DIRECTORY = Path.join(__dirname, 'views')
@@ -18,7 +18,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 var jadeOptions = {cache: CACHE, pretty: PRETTY}
-var templateRouter = new TemplateRouter(VIEWS_DIRECTORY, jadeOptions, routes)
+var templateRenderer = new TemplateRenderer(VIEWS_DIRECTORY, jadeOptions, routes)
 
 var server = require('http').createServer()
     .on('request',
@@ -27,7 +27,7 @@ var server = require('http').createServer()
             response.render =
                 function (filePath, locals, code)
                 {
-                    var html = templateRouter.render(filePath, locals, code)
+                    var html = templateRenderer.render(filePath, locals, code)
                     if(!code)
                         code = 200
 
