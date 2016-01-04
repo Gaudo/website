@@ -6,20 +6,12 @@ var Filesystem = require('fs')
 var Path = require('path')
 var app = Express()
 var router = require('./router')
-var slash = require('./middlewares').slash
 
 app.set('strict routing', true)
 app.set('case sensitive routing', true)
 app.set('view engine', 'jade');
 
-app.locals.getRouteUrl =
-    function (name, params)
-    {
-
-    }
-
 app.use(router)
-app.use(slash)
 
 var server = Http.createServer(app)
 
@@ -51,7 +43,7 @@ server.on('listening',
 )
 
 var dir = '/tmp/socks'
-var file = 'gaudo-net.sock'
+var file = 'gaudo-net-admin.sock'
 var filePath = Path.join(dir, file)
 
 if(!Filesystem.existsSync(dir))

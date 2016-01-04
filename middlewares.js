@@ -1,4 +1,8 @@
 var Url = require('url')
+var expressSlash = require('./libs/express-slash')
+
+var testStackForMatch = expressSlash.testStackForMatch
+var slash = expressSlash.slash
 
 module.exports.disableQueryString =
     function (request, response, next)
@@ -13,13 +17,26 @@ module.exports.disableQueryString =
 
 module.exports.redirectToLowercase =
     function(request, response, next)
-    {
-        var parsedUrl = Url.parse(request.url)
-        var upperCaseFound = /[A-Z]/g.test(parsedUrl.path)
+    {        
+        var method = request.method.toLowerCase();
 
-        if(!upperCaseFound) {
+        if (!(method === 'get' || method === 'head')) {
+            next();
+            return;
+        }
+
+        var parsedUrl = Url.parse(request.url)
+        var lowerPathName = parsedUrl.pathname.toLowerCase()
+        var upperCaseFound = /[A-Z]/g.test(parsedUrl.pathname)
+        var match = testStackForMatch(request.app._router.stack, method, lowerPathName)
+
+        if(!upperCaseFound || !match) {
             return next()
         }
-    
-        response.redirect(parsedUrl.path.toLowerCase())
+        
+        var qs = parsedUrl.search || ''
+
+        response.redirect(lowerPathName + qs)
     }
+
+module.exports.slash = slash()

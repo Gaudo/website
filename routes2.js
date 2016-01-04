@@ -1,4 +1,4 @@
-var router = require('express').Router()
+var router = require('express').Router({'caseSensitive': true, 'strict': true})
 var middlewares = require('./middlewares')
 var staticController = require('./controllers/statics')
 // var guidesController = require('./controllers/guides')
