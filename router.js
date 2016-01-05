@@ -1,21 +1,44 @@
 var router = require('express').Router({'caseSensitive': true, 'strict': true})
+var routes = require('./routes')
 var middlewares = require('./middlewares')
-var staticController = require('./controllers/statics')
-// var guidesController = require('./controllers/guides')
-
-var disableQueryString = middlewares.disableQueryString
 
 router.use(middlewares.redirectToLowercase)
 
-router.get('/', disableQueryString, staticController.home)
-router.get('/competenze', disableQueryString, staticController.skills)
-router.get('/chi-sono',   disableQueryString, staticController.aboutMe)
+routes.forEach(
+    function (element)
+    {
+        var params = [element.pattern]
+        
+        element.middlewares.forEach(
+            function (element)
+            {
+                params.push(element)
+            }
+        )
+        
+        params.push(element.callback)
 
-/*
-router.get('/guide/', guidesController.showAll)
-router.get('/guide/:id', disableQueryString, guidesController.show)
-router.post('/guide/', disableQueryString, guidesController.delete)
-router.put('/guide/:id', disableQueryString, guidesController.edit)
-*/
+        switch (element.method.toLowerCase()) {
+            case 'get':
+                router.get.apply(router, params)
+            break
+
+            case 'put':
+                router.put.apply(router, params)
+            break
+
+            case 'delete':
+                router.delete.apply(router, params)
+            break
+
+            case 'post':
+                router.post.apply(router, params)
+            break
+
+            default:
+                throw new Error('No method called ' + element.method)
+        }
+    }
+)
 
 module.exports = router

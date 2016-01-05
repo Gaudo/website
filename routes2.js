@@ -1,25 +1,107 @@
-var router = require('express').Router({'caseSensitive': true, 'strict': true})
-var middlewares = require('./middlewares')
-var staticController = require('./controllers/statics')
-// var guidesController = require('./controllers/guides')
-
-var disableQueryString = middlewares.disableQueryString
-router.use(middlewares.redirectToLowercase)
-
-router.get('/', disableQueryString, staticController.home)
-router.get('/competenze', disableQueryString, staticController.skills)
-router.get('/chi-sono',   disableQueryString, staticController.aboutMe)
-
-/*
-router.get('/guide/', guidesController.showAll)
-router.get('/guide/:id', disableQueryString, guidesController.show)
-router.post('/guide/', disableQueryString, guidesController.delete)
-router.put('/guide/:id', disableQueryString, guidesController.edit)
-*/
-
+'use strict'
 
 module.exports = [
-    { name : "index", pattern : "/", middlewares: [], callback : MyViews.Index },
-    { name : "index", pattern : "/", callback : MyViews.Index, middlewares: [] },
-    { name : "index", pattern : "/", callback : MyViews.Index, middlewares: [] },
+    {
+        method: 'get',
+        regex: /\/.*/,
+        allowQueryString: true,
+
+        callback:
+            function(request, response)
+            {
+                var UrlClass = require('url')
+                var parsedUrl = UrlClass.parse(request.url)
+                var upperCaseFound = /[A-Z]/g.test(parsedUrl.path)
+
+                if(upperCaseFound) {
+                    response.redirect(parsedUrl.path.toLowerCase())
+                    return false
+                }
+
+                return true
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/$/,
+        allowQueryString: false,
+
+        name: 'home',
+        generator: '/',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('index.jade')
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/curriculum$/,
+        allowQueryString: false,
+
+        name: 'curriculum',
+        generator: '/curriculum',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('curriculum.jade')
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/chi-sono$/,
+        allowQueryString: false,
+
+        name: 'about_me',
+        generator: '/chi-sono',
+
+        callback:
+            function(request, response, params)
+            {
+                var birthday = {year: 1990, month: 12, day: 12}
+                var today = new Date()
+                var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
+                var years = today.year - birthday.year
+                if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
+                    --years
+
+                response.render('about_me.jade', {'years': years})
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/competenze$/,
+        allowQueryString: false,
+
+        name: 'skills',
+        generator: '/competenze',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('skills.jade')
+            }
+    },
+
+    {
+        method: 'get',
+        regex: /^\/guide$/,
+        allowQueryString: false,
+
+        name: 'guides',
+        generator: '/guide',
+
+        callback:
+            function(request, response, params)
+            {
+                response.render('guides.jade')
+            }
+    }
 ]
+
