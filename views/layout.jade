@@ -24,7 +24,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                 nav
                     ul#GaudoNet__siteMenu
                         block selected
-                        - var list = {"Home": getRouteUrl('home'), "Guide": getRouteUrl('guides'), "Competenze": getRouteUrl('skills'), "Chi sono": getRouteUrl('about_me')}
+                        - var list = {"Home": getRouteUrl('home'), "Guide": getRouteUrl('guides'), "Competenze": getRouteUrl('skills'), "Chi sono": getRouteUrl('aboutMe')}
                         each key,item in list
                             if selected === item
                                 li.GaudoNet__siteMenu_item-selected

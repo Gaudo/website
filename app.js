@@ -39,6 +39,12 @@ app.locals.getRouteUrl =
 
 app.use(router)
 app.use(slash)
+app.use(
+    function (req, res)
+    {
+        res.render('errors/404')
+    }
+)
 
 var server = Http.createServer(app)
 
