@@ -8,15 +8,16 @@ var Utils = require('./utils')
 var app = Express()
 var router = require('./router')
 var slash = require('./middlewares').slash
+var routes = require('./routes')
 
 app.set('strict routing', true)
 app.set('case sensitive routing', true)
 app.set('view engine', 'jade');
 
+
 app.locals.getRouteUrl =
     function (name, params)
     {
-        var routes = require('./routes')
         var generator
         routes.some(
             function (element)
