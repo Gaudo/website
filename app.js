@@ -13,7 +13,7 @@ var routes = require('./routes')
 app.set('strict routing', true)
 app.set('case sensitive routing', true)
 app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', Path.join(__dirname, 'views'));
 
 app.locals.getRouteUrl =
     function (name, params)
