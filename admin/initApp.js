@@ -6,7 +6,6 @@ var Path = require('path')
 
 
 var router = require('express').Router({'caseSensitive': true, 'strict': true})
-router.use(middlewares.redirectToLowercase)
 routes.forEach(addToRouter(router))
 
 module.exports = 
@@ -20,7 +19,6 @@ module.exports =
         app.locals.route = helpers.route(routes)
 
         app.use(router)
-        app.use(middlewares.slash)
         app.use(
             function (req, res)
             {

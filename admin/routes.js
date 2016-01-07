@@ -1,38 +1,31 @@
-var staticController = require(__APP + 'controllers/statics')
-var middlewares = require(__CORE + 'middlewares')
-
-var disableQueryString = middlewares.disableQueryString
+var guidesController = require(__APP + 'controllers/guides')
 
 module.exports = [
     { method: 'get',
-      name: 'home',
-      pattern: '/',
-      generator: '/',
-      middlewares: [disableQueryString],
-      callback: staticController.home
+      name: 'guidesShowAll',
+      pattern: '/guide/',
+      generator: '/guide/',
+      callback: guidesController.showAll
     },
 
     { method: 'get',
-      name: 'aboutMe',
-      pattern: '/chi-sono',
-      generator: '/chi-sono',
-      middlewares: [disableQueryString],
-      callback: staticController.aboutMe
+      name: 'guidesShow',
+      pattern: '/guide/:id',
+      generator: '/guide/{id}',
+      callback: guidesController.show
     },
 
-    { method: 'get',
-      name: 'skills',
-      pattern: '/competenze',
-      generator: '/competenze',
-      middlewares: [disableQueryString],
-      callback: staticController.skills
+    { method: 'post',
+      name: 'guidesAdd',
+      pattern: '/guide/',
+      generator: '/guide/',
+      callback: guidesController.add
     },
 
-    { method: 'get',
-      name: 'guides',
-      pattern: '/guide',
-      generator: '/guide',
-      middlewares: [disableQueryString],
-      callback: function(req, res){res.render('guides')}
+    { method: 'delete',
+      name: 'guidesDelete',
+      pattern: '/guide/:id',
+      generator: '/guide/{id}',
+      callback: guidesController.delete
     }
 ]

@@ -1,18 +1,12 @@
 'use strict'
 
-module.exports = function(caseSensitive, strict) {
-    var db = require.main.require('./database');
-    var express = require('express')
-
-    var router = express.Router({
-                'caseSensitive': caseSensitive,
-                'strict'       : strict
-            })
-
-    router.get('/asd/', function (request, response) {
+module.exports = function(request, response)
+    {
         db.query('SELECT * FROM guides', function (error, rows, fields) {
             response.render('index', {'guides': rows});
         });
+    }
+
     });
 
     router.get(/^\/guide\/([0-9]+)$/, function (request, response, next) {
