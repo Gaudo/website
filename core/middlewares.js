@@ -1,6 +1,6 @@
 var Url = require('url')
-var slash = require('./libs/slash')
-var testMatchingRoute = require('./libs/testMatchingRoute')
+var slash = require(__LIBS + 'slash')
+var testMatchingRoute = require(__LIBS + 'testMatchingRoute')
 
 module.exports.disableQueryString =
     function (request, response, next)

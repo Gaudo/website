@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Titolo
+
+  body
+    if guides[0]
+        each guide in guides
+            article
+                h1= guide.title
+                p= guide.body
+    else
+        h1 Non trovato

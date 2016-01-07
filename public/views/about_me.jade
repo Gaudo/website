@@ -1,0 +1,25 @@
+extends ./layout.jade
+
+block css
+
+block title
+    -var title = 'Chi sono'
+
+block selected
+    -var selected = 'Chi sono'
+
+block content
+
+    h1.GaudoNet__siteContent_title Chi sono
+    .GaudoNet__siteContent_rightPicture
+        img.GaudoNet__siteContent_image(src="/assets/img/gaudo.png")
+    p.GaudoNet__siteContent_paragraph.
+         Mi chiamo <strong>Francesco</strong>, ho #{years} anni e sono un appassionato di informatica.
+    p.GaudoNet__siteContent_paragraph.
+        Fin da giovane mi sono sempre interessato alla <strong>programmazione</strong>, alle <strong>reti</strong>, ai <strong>sistemi operativi</strong>. Per questo motivo ho deciso di creare questo piccolo sito/blog, totalmente configurato a mano da zero, su cui metterò i miei futuri <strong>progetti</strong> e, eventualmente, qualche <strong>guida</strong>.
+    p.GaudoNet__siteContent_paragraph.
+        Ogni parte di questo sito è frutto di numerosi anni di ricerca delle <strong>best practice</strong> in diversi campi; <strong>programmazione</strong>, <strong>sistemistica</strong>, <strong>gestione di database</strong> e molto altro.
+        Il sito è hostato su un mio <strong>VPS</strong> privato che gestisco da solo e su cui ho installato Linux Debian.
+        
+    p.GaudoNet__siteContent_paragraph.
+       Sono sempre stato un fermo sostenitore di linux e del codice aperto e, quando mi è possibile, cerco sempre di consigliarlo a chiunque.

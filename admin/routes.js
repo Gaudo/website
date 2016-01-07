@@ -1,5 +1,5 @@
-var staticController = require('./controllers/statics')
-var middlewares = require('./middlewares')
+var staticController = require(__APP + 'controllers/statics')
+var middlewares = require(__CORE + 'middlewares')
 
 var disableQueryString = middlewares.disableQueryString
 
