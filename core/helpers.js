@@ -1,7 +1,7 @@
 var Utils = require(__CORE + 'utils')
 
 module.exports.route =
-    function(routes)
+    function (routes)
     {
         function route(name, params)
         {

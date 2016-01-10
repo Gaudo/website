@@ -1,11 +1,14 @@
+var Path = require('path')
+var Express = require('express')
+var Fs = require('fs');
+
 var helpers = require(__CORE + 'helpers')
 var middlewares = require(__CORE + 'middlewares')
 var addToRouter = require(__CORE + 'addToRouter')
 var routes = require(__APP + 'routes')
-var Path = require('path')
 
+var router = Express.Router({'caseSensitive': true, 'strict': true})
 
-var router = require('express').Router({'caseSensitive': true, 'strict': true})
 router.use(middlewares.redirectToLowercase)
 routes.forEach(addToRouter(router))
 

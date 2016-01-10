@@ -1,4 +1,6 @@
 var staticController = require(__APP + 'controllers/statics')
+var guidesController = require(__APP + 'controllers/guides')
+
 var middlewares = require(__CORE + 'middlewares')
 
 var disableQueryString = middlewares.disableQueryString
@@ -30,9 +32,9 @@ module.exports = [
 
     { method: 'get',
       name: 'guides',
-      pattern: '/guide',
-      generator: '/guide',
+      pattern: '/guide/',
+      generator: '/guide/',
       middlewares: [disableQueryString],
-      callback: function(req, res){res.render('guides')}
+      callback: guidesController.index
     }
 ]

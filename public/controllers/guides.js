@@ -1,36 +1,31 @@
 'use strict'
 
-module.exports = function(caseSensitive, strict) {
-    var db = require.main.require('./database');
-    var express = require('express')
+var parseUrl = require('url').parse
 
-    var router = express.Router({
-                'caseSensitive': caseSensitive,
-                'strict'       : strict
-            })
+var db = require(__APP + 'database') 
 
-    router.get('/asd/', function (request, response) {
-        db.query('SELECT * FROM guides', function (error, rows, fields) {
-            response.render('index', {'guides': rows});
-        });
-    });
+module.exports.index =
+    function (request, response)
+    {
+ /*       var page = parseURL(request.url, true).query.page
 
-    router.get(/^\/guide\/([0-9]+)$/, function (request, response, next) {
-        db.query('SELECT * FROM guides WHERE id = ?', [request.params[0]], function (error, rows) {
-            if(rows.length === 0)
-                return next();
+        if(!Number.isInteger(page) || page < 1)
+            response.redirect('')
+*/
+        var sql = 'SELECT * FROM guides'
+        db.all(sql, [],
+            function (err, rows)
+            {
+                if(err)
+                    throw err;
+            
+                response.render('guides/index', {'guides': rows})
+            }
+        )
+    }
 
-            response.render('view', {'guide': rows[0]});
-        });
-    });
+module.exports.show =
+    function (request, response, next)
+    {
 
-
-    router.post(/^\/guide\/$/, function (request, response, next) {
-        console.log(request.files);
-        console.log('ciao');
-        return next();
-    });
-
-    return router
-} 
-
+    }
