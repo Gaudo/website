@@ -37,4 +37,11 @@ module.exports.redirectToLowercase =
         response.redirect(lowerPathName + qs)
     }
 
+module.exports.xhtml =
+    function(request, response, next)
+    {        
+        response.contentType('application/xhtml+xml')
+        next()
+    }
+
 module.exports.slash = slash()
