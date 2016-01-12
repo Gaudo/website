@@ -18,7 +18,9 @@ module.exports.route =
             )
 
             for(var key in params) {
-                var value = Utils.slug(params[key])
+                var value = params[key]
+                if (typeof value === 'string' || value instanceof String)
+                    value = Utils.slug(value)
                 generator = generator.replace('{'+key+'}', value)
             }
 

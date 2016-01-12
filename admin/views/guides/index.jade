@@ -1,13 +1,13 @@
-doctype html
-html
-  head
-    title Titolo
+extends ../layout.jade
 
-  body
+block content
     if guides[0]
-        each guide in guides
-            article
-                h1= guide.title
-                p= guide.body
+        table
+            tr
+                th(colspan="2") GUIDE
+            each guide in guides
+                tr
+                    td
+                        a(href="#{route('guidesShow', {'id': guide.id})}")= guide.title
     else
-        h1 Non trovato
+        p Non sono presenti record

@@ -1,0 +1,8 @@
+extends ../layout.jade
+
+block content
+
+    form(method="post", action="#{route('guidesAdd')}")
+        input(type="text" name="title")
+        textarea(name="body")
+        input(type="submit")

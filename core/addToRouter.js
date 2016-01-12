@@ -11,7 +11,7 @@ module.exports =
                     params.push(element)
                 }
             )
-            
+
             params.push(element.callback)
 
             switch (element.method.toLowerCase()) {

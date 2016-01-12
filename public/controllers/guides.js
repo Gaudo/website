@@ -4,20 +4,15 @@ var parseUrl = require('url').parse
 
 var db = require(__APP + 'database') 
 
-module.exports.index =
+module.exports.showAll =
     function (request, response)
     {
- /*       var page = parseURL(request.url, true).query.page
-
-        if(!Number.isInteger(page) || page < 1)
-            response.redirect('')
-*/
         var sql = 'SELECT * FROM guides'
         db.all(sql, [],
             function (err, rows)
             {
                 if(err)
-                    throw err;
+                    throw err
             
                 response.render('guides/index', {'guides': rows})
             }
@@ -27,5 +22,15 @@ module.exports.index =
 module.exports.show =
     function (request, response, next)
     {
-
+        var sql = 'SELECT * FROM guides WHERE id = ?'
+        db.get(sql, [request.params.id],
+            function (err, row)
+            {
+                if(err)
+                    throw err
+                console.log(row)
+                response.render('guides/index', {'guides': row})
+            }
+        )
     }
+

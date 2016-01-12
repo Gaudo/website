@@ -5,7 +5,7 @@ var middlewares = require(__CORE + 'middlewares')
 
 var disableQueryString = middlewares.disableQueryString
 
-module.exports = [
+var staticRoutes = [
     { method: 'get',
       name: 'home',
       pattern: '/',
@@ -28,13 +28,27 @@ module.exports = [
       generator: '/competenze',
       middlewares: [disableQueryString],
       callback: staticController.skills
-    },
+    }
+]
+
+var guidesRoutes = [
 
     { method: 'get',
       name: 'guides',
       pattern: '/guide/',
       generator: '/guide/',
+      middlewares: [],
+      callback: guidesController.showAll
+    },
+
+    { method: 'get',
+      name: 'guide',
+      pattern: '/guide/:id/:title',
+      generator: '/guide/{id}/{title}',
       middlewares: [disableQueryString],
-      callback: guidesController.index
+      callback: guidesController.show
     }
+
 ]
+
+module.exports = staticRoutes.concat(guidesRoutes)

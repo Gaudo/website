@@ -1,6 +1,5 @@
 var Path = require('path')
 var Express = require('express')
-var Fs = require('fs');
 
 var helpers = require(__CORE + 'helpers')
 var middlewares = require(__CORE + 'middlewares')

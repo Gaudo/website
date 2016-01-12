@@ -6,7 +6,6 @@ module.exports.disableQueryString =
     function (request, response, next)
     {
         var parsedUrl = Url.parse(request.url)
-
         if(parsedUrl.search === null)
             return next()
 
@@ -24,15 +23,20 @@ module.exports.redirectToLowercase =
         }
 
         var parsedUrl = Url.parse(request.url)
-        var lowerPathName = parsedUrl.pathname.toLowerCase()
-        var upperCaseFound = /[A-Z]/g.test(parsedUrl.pathname)
-        var match = testMatchingRoute(request.app._router.stack, method, lowerPathName)
 
-        if(!upperCaseFound || !match) {
+        var upperCaseFound = /[A-Z]/g.test(parsedUrl.path)
+        if(!upperCaseFound) {
             return next()
         }
-        
-        var qs = parsedUrl.search || ''
+
+        var lowerPathName = parsedUrl.pathname.toLowerCase()
+        var match = testMatchingRoute(request.app._router.stack, method, lowerPathName)
+        if(!match) {
+            return next()
+        }
+
+        var qs = parsedUrl.search.toLowerCase() || ''
+
 
         response.redirect(lowerPathName + qs)
     }
