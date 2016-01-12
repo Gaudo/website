@@ -1,0 +1,30 @@
+extends ../layout.jade
+block js
+    script.
+        <![CDATA[
+            $( "#update-guide" ).click(function() {
+                  var params = "title="+$("#guide-title").val()+"&body="+$("#guide-body").val()
+                  $.ajax({
+                      url: "#{route('guides-update', {id: guide.id})}",
+                      type: 'PUT',
+                      async: false,
+                      data: params,
+                      success: function(data, status) {
+                        alert(status);
+                      },
+                      error: function(data, status) {
+                        alert(status);            
+                    }
+                        
+                  });
+            });
+        ]]>
+
+
+block content
+    label(for="guide-title") titolo
+    input(type="text" value="#{guide.title}" name="title" id="guide-title")
+    label(for="guide-body") testo
+    textarea(name="body" id="guide-body").
+        #{guide.body}
+    input(type="button" id="update-guide" value="Modifica")

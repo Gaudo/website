@@ -29,7 +29,7 @@ module.exports.show =
                 if(err)
                     throw err
 
-                response.render('guides/index', {'guides': row})
+                response.render('guides/show', {'guide': row})
             }
         )
     }
@@ -39,8 +39,16 @@ module.exports.add =
     function (request, response, next)
     {
         var sql = "INSERT INTO guides(title, body, created, modified) values (?, ?, date('now'), NULL)"
-        db.run(sql, [request.body.title, request.body.body])
-        response.redirect('/guide/')
+        db.run(sql, [request.body.title, request.body.body],
+            function(err)
+            {
+                if(err)
+                    return response.status(500).end()
+
+                return response.status(201).end()
+            }       
+        )
+
     }
 
 module.exports.addView =
@@ -49,8 +57,33 @@ module.exports.addView =
         response.render('guides/addView')
     }
 
+module.exports.update =
+    function (request, response, next)
+    {
+        var sql = "UPDATE guides SET title=?, body=?, modified=date('now') WHERE id=?"
+        db.run(sql, [request.body.title, request.body.body, request.params.id],
+            function(err)
+            {
+                if(err)
+                    return response.status(500).end()
+
+                return response.status(204).end()
+            }       
+        )
+
+    }
+
 module.exports.delete =
     function (request, response, next)
     {
+        var sql = "DELETE FROM guides WHERE id=?"
+        db.run(sql, [request.params.id],
+            function(err)
+            {
+                if(err)
+                    return response.status(500).end()
 
+                return response.status(204).end()
+            }       
+        )
     }

@@ -14,7 +14,7 @@ module.exports = [
     },
 
     { method: 'get',
-      name: 'guidesShowAll',
+      name: 'guides-showAll',
       pattern: '/guide/',
       generator: '/guide/',
       middlewares: [],
@@ -22,7 +22,7 @@ module.exports = [
     },
 
     { method: 'get',
-      name: 'guidesShow',
+      name: 'guides-show',
       pattern: '/guide/:id(\\d+)',
       generator: '/guide/{id}',
       middlewares: [],
@@ -30,7 +30,7 @@ module.exports = [
     },
 
     { method: 'get',
-      name: 'guidesAddView',
+      name: 'guides-addView',
       pattern: '/guide/aggiungi',
       generator: '/guide/aggiungi',
       middlewares: [],
@@ -38,15 +38,23 @@ module.exports = [
     },
 
     { method: 'post',
-      name: 'guidesAdd',
+      name: 'guides-add',
       pattern: '/guide/',
       generator: '/guide/',
       middlewares: [],
       callback: guidesController.add
     },
 
+    { method: 'put',
+      name: 'guides-update',
+      pattern: '/guide/:id',
+      generator: '/guide/{id}',
+      middlewares: [],
+      callback: guidesController.update
+    },
+
     { method: 'delete',
-      name: 'guidesDelete',
+      name: 'guides-delete',
       pattern: '/guide/:id',
       generator: '/guide/{id}',
       middlewares: [],

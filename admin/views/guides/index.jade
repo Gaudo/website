@@ -8,6 +8,6 @@ block content
             each guide in guides
                 tr
                     td
-                        a(href="#{route('guidesShow', {'id': guide.id})}")= guide.title
+                        a(href="#{route('guides-show', {'id': guide.id})}")= guide.title
     else
         p Non sono presenti record

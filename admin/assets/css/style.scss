@@ -5,3 +5,12 @@ table {
 tr {
     border: 1px solid #000;
 }
+
+input, label{
+    display:block;
+}
+
+textarea {
+    width: 600px;
+    height: 500px
+}
