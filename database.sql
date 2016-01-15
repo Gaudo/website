@@ -1,7 +1,8 @@
-create table guides(
+CREATE TABLE guides(
     id INTEGER PRIMARY KEY NOT NULL,
-    title VARCHAR(255) NOT NULL,
+    title TEXT NOT NULL,
     body TEXT NOT NULL,
-    created TIMESTAMP NOT NULL,
-    modified TIMESTAMP
+    created TEXT NOT NULL,
+    modified TEXT
 );
+

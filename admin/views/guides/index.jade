@@ -1,13 +1,17 @@
 extends ../layout.jade
 
 block content
+    a(href="#{route('guides-addView')}") Aggiungi guida
     if guides[0]
         table
             tr
                 th(colspan="2") GUIDE
             each guide in guides
                 tr
+                    td= guide.created.toLocaleString()
+                        
                     td
                         a(href="#{route('guides-show', {'id': guide.id})}")= guide.title
+
     else
         p Non sono presenti record

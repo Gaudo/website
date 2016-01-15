@@ -1,8 +1,31 @@
 extends ../layout.jade
 
+block js
+    script.
+        <![CDATA[
+            $( "#add-guide" ).click(function() {
+                  var params = "title="+$("#guide-title").val()+"&body="+$("#guide-body").val()
+                  $.ajax({
+                      url: "#{route('guides-add')}",
+                      type: 'POST',
+                      async: false,
+                      data: params,
+                      success: function(data, status) {
+                        window.location.replace("#{route('guides-showAll')}");
+                      },
+                      error: function(data, status) {
+                        alert(status);            
+                    }
+                        
+                  });
+            });
+        ]]>
+
 block content
 
-    form(method="post", action="#{route('guides-add')}")
-        input(type="text" name="title")
-        textarea(name="body")
-        input(type="submit")
+    form
+        label(for="guide-title") titolo
+        input(type="text" name="title" id="guide-title")
+        label(for="guide-body") testo
+        textarea(name="body" id="guide-body")
+        input(type="button" id="add-guide" value="Aggiungi")

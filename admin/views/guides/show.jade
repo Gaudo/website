@@ -18,13 +18,31 @@ block js
                         
                   });
             });
+
+            $( "#delete-guide" ).click(function() {
+                  $.ajax({
+                      url: "#{route('guides-delete', {id: guide.id})}",
+                      type: 'DELETE',
+                      async: false,
+                      success: function(data, status) {
+                        window.location.replace("#{route('guides-showAll')}");
+                      },
+                      error: function(data, status) {
+                        alert(status);            
+                    }
+                        
+                  });
+            });
         ]]>
 
 
 block content
-    label(for="guide-title") titolo
-    input(type="text" value="#{guide.title}" name="title" id="guide-title")
-    label(for="guide-body") testo
-    textarea(name="body" id="guide-body").
-        #{guide.body}
-    input(type="button" id="update-guide" value="Modifica")
+
+    input(type="button" id="delete-guide" value="ELIMINA")
+    form
+        label(for="guide-title") titolo
+        input(type="text" value="#{guide.title}" name="title" id="guide-title")
+        label(for="guide-body") testo
+        textarea(name="body" id="guide-body").
+            #{guide.body}
+        input(type="button" id="update-guide" value="Modifica")

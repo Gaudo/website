@@ -7,13 +7,28 @@ var db = require(__APP + 'database')
 module.exports.showAll =
     function (request, response)
     {
-        var sql = 'SELECT * FROM guides'
-        db.all(sql, [],
-            function (err, rows)
+        var sql = "SELECT id, title, created, modified FROM guides"
+        var rows = []
+
+        db.each(sql, [],
+            function (err, row)
             {
                 if(err)
                     throw err
-            
+
+                row.created = new Date(row.created + ' UTC')
+
+                if(row.modified !== null)
+                    row.modified = new Date(row.modified + ' UTC')
+
+                rows.push(row)
+            },
+
+            function (err, numRows)
+            {
+                if(err)
+                    throw err
+
                 response.render('guides/index', {'guides': rows})
             }
         )
@@ -38,7 +53,7 @@ module.exports.show =
 module.exports.add =
     function (request, response, next)
     {
-        var sql = "INSERT INTO guides(title, body, created, modified) values (?, ?, date('now'), NULL)"
+        var sql = "INSERT INTO guides(title, body, created, modified) values (?, ?, CURRENT_TIMESTAMP, NULL)"
         db.run(sql, [request.body.title, request.body.body],
             function(err)
             {
@@ -60,7 +75,7 @@ module.exports.addView =
 module.exports.update =
     function (request, response, next)
     {
-        var sql = "UPDATE guides SET title=?, body=?, modified=date('now') WHERE id=?"
+        var sql = "UPDATE guides SET title=?, body=?, modified=CURRENT_TIMESTAMP WHERE id=?"
         db.run(sql, [request.body.title, request.body.body, request.params.id],
             function(err)
             {

@@ -1,9 +1,24 @@
 table {
-    border: 1px solid #000;
+    background-color: #000;
+    color: #fff
 }
 
-tr {
+td {
     border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+}
+
+td > a  {
+    display: block;
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+tr:hover td {
+    background-color: #ccc;
 }
 
 input, label{
