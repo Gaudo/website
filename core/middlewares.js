@@ -21,7 +21,7 @@ module.exports.redirectToLowercase =
             next();
             return;
         }
-
+            
         var parsedUrl = Url.parse(request.url)
 
         var upperCaseFound = /[A-Z]/g.test(parsedUrl.path)
@@ -35,7 +35,9 @@ module.exports.redirectToLowercase =
             return next()
         }
 
-        var qs = parsedUrl.search.toLowerCase() || ''
+        var qs = ''
+        if(parsedUrl.search !== null)
+            qs = parsedUrl.search.toLowerCase()
 
 
         response.redirect(lowerPathName + qs)

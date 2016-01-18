@@ -3,19 +3,19 @@ block js
     script.
         <![CDATA[
             $( "#update-guide" ).click(function() {
-                  var params = "title="+$("#guide-title").val()+"&body="+$("#guide-body").val()
+
                   $.ajax({
                       url: "#{route('guides-update', {id: guide.id})}",
+                      contentType: 'application/json',
                       type: 'PUT',
                       async: false,
-                      data: params,
+                      data: JSON.stringify({title: $("#guide-title").val(), body: $("#guide-body").val()}),
                       success: function(data, status) {
-                        alert(status);
+                        window.location.replace("#{route('guides-showAll')}");
                       },
                       error: function(data, status) {
                         alert(status);            
-                    }
-                        
+                      }
                   });
             });
 
@@ -29,8 +29,7 @@ block js
                       },
                       error: function(data, status) {
                         alert(status);            
-                    }
-                        
+                      } 
                   });
             });
         ]]>

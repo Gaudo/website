@@ -42,8 +42,8 @@ var guidesRoutes = [
     },
 
     { method: 'get',
-      name: 'guide',
-      pattern: '/guide/:id/:title',
+      name: 'guide-show',
+      pattern: '/guide/:id(\\d+)/:title?',
       generator: '/guide/{id}/{title}',
       middlewares: [disableQueryString],
       callback: guidesController.show

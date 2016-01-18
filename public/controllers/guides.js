@@ -1,5 +1,6 @@
 'use strict'
 
+var slug = require(__CORE + 'utils').slug
 var parseUrl = require('url').parse
 
 var db = require(__APP + 'database') 
@@ -20,16 +21,21 @@ module.exports.showAll =
     }
 
 module.exports.show =
-    function (request, response, next)
+    function (request, response)
     {
-        var sql = 'SELECT * FROM guides WHERE id = ?'
+        var sql = 'SELECT title, bodyHtml as body FROM guides WHERE id = ?'
         db.get(sql, [request.params.id],
             function (err, row)
             {
                 if(err)
                     throw err
-                console.log(row)
-                response.render('guides/index', {'guides': row})
+
+                var slugTitle = slug(row.title)
+
+                if(request.params.title === undefined || request.params.title !== slugTitle)
+                    return response.redirect('/guide/'+request.params.id +'/'+slugTitle)
+
+                response.render('guides/show', {'guide': row})
             }
         )
     }

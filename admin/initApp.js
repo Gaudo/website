@@ -19,7 +19,7 @@ module.exports =
 
         app.locals.route = helpers.route(routes)
 
-        app.use(BodyParser.urlencoded({extended: true}))
+        app.use(BodyParser.json())
         app.use(middlewares.xhtml)
         app.use(router)
         app.use(middlewares.slash)

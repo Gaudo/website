@@ -1,5 +1,6 @@
 'use strict'
 
+var Marked = require('marked')
 var parseUrl = require('url').parse
 
 var db = require(__APP + 'database') 
@@ -53,12 +54,14 @@ module.exports.show =
 module.exports.add =
     function (request, response, next)
     {
-        var sql = "INSERT INTO guides(title, body, created, modified) values (?, ?, CURRENT_TIMESTAMP, NULL)"
-        db.run(sql, [request.body.title, request.body.body],
+        var sql = "INSERT INTO guides(title, body, bodyHtml, created, modified) values (?, ?, ?, CURRENT_TIMESTAMP, NULL)"
+        db.run(sql, [request.body.title, request.body.body, Marked(request.body.body)],
             function(err)
             {
-                if(err)
+                if(err) {
+                    console.log(err)
                     return response.status(500).end()
+                }
 
                 return response.status(201).end()
             }       
@@ -75,13 +78,14 @@ module.exports.addView =
 module.exports.update =
     function (request, response, next)
     {
-        var sql = "UPDATE guides SET title=?, body=?, modified=CURRENT_TIMESTAMP WHERE id=?"
-        db.run(sql, [request.body.title, request.body.body, request.params.id],
+        var sql = "UPDATE guides SET title=?, body=?, bodyHtml=?, modified=CURRENT_TIMESTAMP WHERE id=?"
+        db.run(sql, [request.body.title, request.body.body, Marked(request.body.body), request.params.id],
             function(err)
             {
-                if(err)
+                if(err) {
+                    console.log(err)
                     return response.status(500).end()
-
+                }
                 return response.status(204).end()
             }       
         )

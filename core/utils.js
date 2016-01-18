@@ -56,6 +56,6 @@ module.exports.escape =
 module.exports.slug =
     function (str)
     {
-        return str.replace(/([^a-z0-9])/gi, '-')
+        return str.replace(/([^a-z0-9])/gi, '-').toLowerCase()
     }
 

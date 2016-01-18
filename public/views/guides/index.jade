@@ -7,8 +7,9 @@ block content
     h1.GaudoNet__siteContent_title Guide
     if guides[0]
         each guide in guides
-            article
-                h1= guide.title
-                p= guide.body
+            a(href="#{route('guide-show', {id: guide.id, title: guide.title})}")
+                article
+                    h1= guide.title
+                    p= guide.body
     else
         p Non sono presenti record

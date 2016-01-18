@@ -8,7 +8,7 @@ block content
                 th(colspan="2") GUIDE
             each guide in guides
                 tr
-                    td= guide.created.toLocaleString()
+                    td= guide.created.getDate()+'/'+guide.created.getMonth()+1 + '/'+guide.created.getFullYear() + ' - ' + guide.created.getHours() + ':' + guide.created.getMinutes()
                         
                     td
                         a(href="#{route('guides-show', {'id': guide.id})}")= guide.title
