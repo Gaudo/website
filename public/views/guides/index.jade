@@ -1,15 +1,15 @@
 extends ../layout.jade
 
-block title
+block vars
     -title= "Guide avanzate di informatica"
     -selected= "Guide"
+
 block content
     h1.GaudoNet__siteContent_title Guide
-    if guides[0]
-        each guide in guides
-            a(href="#{route('guide-show', {id: guide.id, title: guide.title})}")
-                article
-                    h1= guide.title
-                    p= guide.body
-    else
-        p Non sono presenti record
+    ul
+        if guides[0]
+            each guide in guides
+                li
+                    a(href="#{route('guide-show', {id: guide.id, title: guide.title})}" class="") <strong>#{guide.title}</strong>
+        else
+            p Non sono presenti record

@@ -1,18 +1,12 @@
 extends ./layout.jade
 
-block css
-
-block title
-    -var title = 'Le mie competenze'
-
-block selected
-    -var selected = 'Competenze'
+block vars
+    -title = 'Le mie competenze'
+    -selected = 'Competenze'
 
 block content
-
     h1.GaudoNet__siteContent_title Competenze
     p.GaudoNet__siteContent_paragraph Ho un’ottima conoscenza in molti rami dell’informatica. In particolare ho approfondito i seguenti:
-
         ul.GaudoNet__siteContent_list
             li.GaudoNet__siteContent_list_item <strong>(X)HTML 5</strong>
             li.GaudoNet__siteContent_list_item <strong>CSS 3</strong>

@@ -1,7 +1,8 @@
 'use strict'
 
-var slug = require(__CORE + 'utils').slug
+var Utils = require(__CORE + 'utils')
 var parseUrl = require('url').parse
+require(__CORE + 'date')
 
 var db = require(__APP + 'database') 
 
@@ -23,14 +24,19 @@ module.exports.showAll =
 module.exports.show =
     function (request, response)
     {
-        var sql = 'SELECT title, bodyHtml as body FROM guides WHERE id = ?'
+        var sql = 'SELECT title, bodyHtml as body, created, modified FROM guides WHERE id = ?'
         db.get(sql, [request.params.id],
             function (err, row)
             {
                 if(err)
                     throw err
 
-                var slugTitle = slug(row.title)
+                row.created = new Date(row.created + ' UTC')
+
+                if(row.modified !== null)
+                    row.modified = new Date(row.modified + ' UTC')
+
+                var slugTitle = Utils.slug(row.title)
 
                 if(request.params.title === undefined || request.params.title !== slugTitle)
                     return response.redirect('/guide/'+request.params.id +'/'+slugTitle)

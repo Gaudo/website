@@ -1,15 +1,10 @@
 extends ./layout.jade
 
-block css
-
-block title
-    -var title = 'Chi sono'
-
-block selected
-    -var selected = 'Chi sono'
+block vars
+    -title = 'Chi sono'
+    -selected = 'Chi sono'
 
 block content
-
     h1.GaudoNet__siteContent_title Chi sono
     .GaudoNet__siteContent_rightPicture
         img.GaudoNet__siteContent_image(src="/assets/img/gaudo.png")

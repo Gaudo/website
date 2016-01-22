@@ -26,6 +26,16 @@ body {
 }
 
 .GaudoNet {
+    &__article_date {
+        margin: 0;
+        padding: 0;
+        font-size: .8rem;
+    }
+
+    &__article {
+        font-family: $font-sans;
+    }
+
     &__siteContent_list {
         font-family: $font-sans;
         padding-left:2rem;
@@ -115,6 +125,24 @@ body {
             margin:0;
         }
     }
+
+    &__agplLogo {
+        background-color: #fff;
+    }
+
+    &__siteBanners_banner {
+        display: inline-block;
+        margin: 0;
+        margin-right: .5rem;
+        padding: 0;
+
+    }
+
+    &__siteBanners_banner_logo {
+        height: 1.8rem;
+    }
+
+
 }
 
 #GaudoNet {
@@ -160,11 +188,6 @@ body {
             }
         }
     }
-/*
-    &__siteGradient {
-        box-shadow: 0 0 14rem .1rem #BB6F31;
-    }
-*/
 
     &__siteGradient {
         box-shadow: 0 0 1rem .1rem #000;
@@ -191,6 +214,12 @@ body {
     &__siteFooter {
         text-align: center;
         padding: 1rem;
+    }
+
+    &__siteBanners {
+        list-style: none;
+        padding:0;
+        margin:0;
     }
 }
 
