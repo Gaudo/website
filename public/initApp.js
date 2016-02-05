@@ -27,7 +27,7 @@ module.exports =
         app.use(
             function (req, res)
             {
-                res.render('errors/404')
+                res.status(404).render('errors/404')
             }
         )
 
