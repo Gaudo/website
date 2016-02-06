@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block content
-    a(href="#{route('guides-addView')}") Aggiungi guida
+    a(href="#{routeToUrl('guides-addView')}") Aggiungi guida
     if guides[0]
         table
             tr
@@ -11,7 +11,7 @@ block content
                     td= guide.created.getDate()+'/'+guide.created.getMonth()+1 + '/'+guide.created.getFullYear() + ' - ' + guide.created.getHours() + ':' + guide.created.getMinutes()
                         
                     td
-                        a(href="#{route('guides-show', {'id': guide.id})}")= guide.title
+                        a(href="#{routeToUrl('guides-show', {'id': guide.id})}")= guide.title
 
     else
         p Non sono presenti record

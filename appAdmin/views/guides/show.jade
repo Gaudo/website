@@ -5,13 +5,13 @@ block js
             $( "#update-guide" ).click(function() {
 
                   $.ajax({
-                      url: "#{route('guides-update', {id: guide.id})}",
+                      url: "#{routeToUrl('guides-update', {id: guide.id})}",
                       contentType: 'application/json',
                       type: 'PUT',
                       async: false,
                       data: JSON.stringify({title: $("#guide-title").val(), body: $("#guide-body").val()}),
                       success: function(data, status) {
-                        window.location.replace("#{route('guides-showAll')}");
+                        window.location.replace("#{routeToUrl('guides-showAll')}");
                       },
                       error: function(data, status) {
                         alert(status);            
@@ -21,11 +21,11 @@ block js
 
             $( "#delete-guide" ).click(function() {
                   $.ajax({
-                      url: "#{route('guides-delete', {id: guide.id})}",
+                      url: "#{routeToUrl('guides-delete', {id: guide.id})}",
                       type: 'DELETE',
                       async: false,
                       success: function(data, status) {
-                        window.location.replace("#{route('guides-showAll')}");
+                        window.location.replace("#{routeToUrl('guides-showAll')}");
                       },
                       error: function(data, status) {
                         alert(status);            

@@ -1,4 +1,4 @@
-var guidesController = require(__APP + 'controllers/guides')
+var guides = require('./guides')
 
 module.exports = [
     { method: 'get',
@@ -18,7 +18,7 @@ module.exports = [
       pattern: '/guide/',
       generator: '/guide/',
       middlewares: [],
-      callback: guidesController.showAll
+      callback: guides.showAll
     },
 
     { method: 'get',
@@ -26,7 +26,7 @@ module.exports = [
       pattern: '/guide/:id(\\d+)',
       generator: '/guide/{id}',
       middlewares: [],
-      callback: guidesController.show
+      callback: guides.show
     },
 
     { method: 'get',
@@ -34,7 +34,7 @@ module.exports = [
       pattern: '/guide/aggiungi',
       generator: '/guide/aggiungi',
       middlewares: [],
-      callback: guidesController.addView
+      callback: guides.addView
     },
 
     { method: 'post',
@@ -42,7 +42,7 @@ module.exports = [
       pattern: '/guide/',
       generator: '/guide/',
       middlewares: [],
-      callback: guidesController.add
+      callback: guides.add
     },
 
     { method: 'put',
@@ -50,7 +50,7 @@ module.exports = [
       pattern: '/guide/:id',
       generator: '/guide/{id}',
       middlewares: [],
-      callback: guidesController.update
+      callback: guides.update
     },
 
     { method: 'delete',
@@ -58,6 +58,6 @@ module.exports = [
       pattern: '/guide/:id',
       generator: '/guide/{id}',
       middlewares: [],
-      callback: guidesController.delete
+      callback: guides.delete
     }
 ]

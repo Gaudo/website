@@ -5,13 +5,13 @@ block js
         <![CDATA[
             $( "#add-guide" ).click(function() {
                   $.ajax({
-                      url: "#{route('guides-add')}",
+                      url: "#{routeToUrl('guides-add')}",
                       contentType: 'application/json',
                       type: 'POST',
                       async: false,
                       data: JSON.stringify({title: $("#guide-title").val(), body: $("#guide-body").val()}),
                       success: function(data, status) {
-                        window.location.replace("#{route('guides-showAll')}");
+                        window.location.replace("#{routeToUrl('guides-showAll')}");
                       },
                       error: function(data, status) {
                         alert(status);            
