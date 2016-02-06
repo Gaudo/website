@@ -1,9 +1,9 @@
 'use strict'
 
-var toSlug = require(__HELPERS + 'toSlug')
 var parseUrl = require('url').parse
 
-var db = require(__APP + 'database') 
+var toSlug = require(__HELPERS + 'toSlug')
+var db = require(__APP_PUBLIC + 'database') 
 
 module.exports.showAll =
     function (request, response)
