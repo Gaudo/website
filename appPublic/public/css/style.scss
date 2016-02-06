@@ -4,16 +4,16 @@ $font-serif: Source Serif Pro;
 @font-face {
     font-family: Open Sans;
     src:
-        url('/assets/fonts/Open-Sans-regular.woff2') format('woff2'),
-        url('/assets/fonts/Open-Sans-regular.woff') format('woff');
+        url('/public/fonts/Open-Sans-regular.woff2') format('woff2'),
+        url('/public/fonts/Open-Sans-regular.woff') format('woff');
 
 }
 
 @font-face {
     font-family: Source Serif Pro;
     src:
-        url('/assets/fonts/Source-Serif-Pro-regular.woff2') format('woff2'),
-        url('/assets/fonts/Source-Serif-Pro-regular.woff') format('woff');
+        url('/public/fonts/Source-Serif-Pro-regular.woff2') format('woff2'),
+        url('/public/fonts/Source-Serif-Pro-regular.woff') format('woff');
 }
 
 html {
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-    background-image: url(../img/back3.png);
+    background-image: url('/public/img/back3.png');
     background-repeat: repeat;
 }
 
