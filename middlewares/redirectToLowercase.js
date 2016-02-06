@@ -1,18 +1,7 @@
 var Url = require('url')
-var slash = require(__LIBS + 'slash')
 var testMatchingRoute = require(__LIBS + 'testMatchingRoute')
 
-module.exports.disableQueryString =
-    function (request, response, next)
-    {
-        var parsedUrl = Url.parse(request.url)
-        if(parsedUrl.search === null)
-            return next()
-
-        response.redirect(parsedUrl.pathname)
-    }
-
-module.exports.redirectToLowercase =
+module.exports =
     function(request, response, next)
     {        
         var method = request.method.toLowerCase();
@@ -43,11 +32,3 @@ module.exports.redirectToLowercase =
         response.redirect(lowerPathName + qs)
     }
 
-module.exports.xhtml =
-    function(request, response, next)
-    {        
-        response.contentType('application/xhtml+xml')
-        next()
-    }
-
-module.exports.slash = slash()

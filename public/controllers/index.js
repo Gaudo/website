@@ -1,17 +1,16 @@
-var staticController = require(__APP + 'controllers/statics')
-var guidesController = require(__APP + 'controllers/guides')
+var statics = require('./statics')
+var guides = require('./guides')
 
-var middlewares = require(__CORE + 'middlewares')
+var disableQueryString = require(__MIDDLEWARES + 'disableQueryString')
 
-var disableQueryString = middlewares.disableQueryString
-
-var staticRoutes = [
+module.exports = [
+/********** STATICS **********/
     { method: 'get',
       name: 'home',
       pattern: '/',
       generator: '/',
       middlewares: [disableQueryString],
-      callback: staticController.home
+      callback: statics.home
     },
 
     { method: 'get',
@@ -19,7 +18,7 @@ var staticRoutes = [
       pattern: '/chi-sono',
       generator: '/chi-sono',
       middlewares: [disableQueryString],
-      callback: staticController.aboutMe
+      callback: statics.aboutMe
     },
 
     { method: 'get',
@@ -27,28 +26,25 @@ var staticRoutes = [
       pattern: '/competenze',
       generator: '/competenze',
       middlewares: [disableQueryString],
-      callback: staticController.skills
-    }
-]
+      callback: statics.skills
+    },
+/******* STATICS END *********/
 
-var guidesRoutes = [
-
+/********** GUIDES **********/
     { method: 'get',
-      name: 'guides',
+      name: 'guides-showAll',
       pattern: '/guide/',
       generator: '/guide/',
       middlewares: [],
-      callback: guidesController.showAll
+      callback: guides.showAll
     },
 
     { method: 'get',
-      name: 'guide-show',
+      name: 'guides-show',
       pattern: '/guide/:id(\\d+)/:title?',
       generator: '/guide/{id}/{title}',
       middlewares: [disableQueryString],
-      callback: guidesController.show
+      callback: guides.show
     }
-
+/******* GUIDES END *********/
 ]
-
-module.exports = staticRoutes.concat(guidesRoutes)

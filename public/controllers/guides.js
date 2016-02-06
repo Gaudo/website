@@ -1,8 +1,7 @@
 'use strict'
 
-var Utils = require(__CORE + 'utils')
+var toSlug = require(__HELPERS + 'toSlug')
 var parseUrl = require('url').parse
-require(__CORE + 'date')
 
 var db = require(__APP + 'database') 
 
@@ -36,7 +35,7 @@ module.exports.show =
                 if(row.modified !== null)
                     row.modified = new Date(row.modified + ' UTC')
 
-                var slugTitle = Utils.slug(row.title)
+                var slugTitle = toSlug(row.title)
 
                 if(request.params.title === undefined || request.params.title !== slugTitle)
                     return response.redirect('/guide/'+request.params.id +'/'+slugTitle)

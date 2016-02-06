@@ -1,6 +1,6 @@
-var Utils = require(__CORE + 'utils')
+var toSlug = require(__HELPERS + 'toSlug')
 
-module.exports.route =
+module.exports =
     function (routes)
     {
         function route(name, params)
@@ -20,7 +20,7 @@ module.exports.route =
             for(var key in params) {
                 var value = params[key]
                 if (typeof value === 'string' || value instanceof String)
-                    value = Utils.slug(value)
+                    value = toSlug(value)
                 generator = generator.replace('{'+key+'}', value)
             }
 
