@@ -1,5 +1,3 @@
-'use strict'
-
 var parseUrl = require('url').parse
 
 var toSlug = require(__CORE + 'helpers/toSlug')
