@@ -18,8 +18,8 @@ global.__LIBS = Path.join(__ROOT, 'libs/')
 global.__CORE = Path.join(__ROOT, 'core/')
 
 require(__CORE + 'Date')
-var createApplication = require(__APP + 'createApplication')
-var routes = require(__APP + 'controllers/')
+var createApplication = require(__APP + 'helpers/createApplication')
+var routes = require(__APP + 'routes')
 var registerClosingEvents = require(__CORE + 'registerClosingEvents')
 
 var app = createApplication(routes)

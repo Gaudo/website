@@ -1,5 +1,5 @@
-var statics = require('./statics')
-var guides = require('./guides')
+var statics = require(__APP + 'controllers/statics')
+var guides = require(__APP + 'controllers/guides')
 
 var disableQueryString = require(__CORE + 'middlewares/disableQueryString')
 
