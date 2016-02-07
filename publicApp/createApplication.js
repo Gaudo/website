@@ -1,15 +1,15 @@
 var Express = require('express')
 var Path = require('path')
 
-var redirectToLowercase = require(__MIDDLEWARES + 'redirectToLowercase')
-var setXhtmlMime = require(__MIDDLEWARES + 'setXhtmlMime')
-var redirectTrailingSlash = require(__MIDDLEWARES + 'redirectTrailingSlash')
-var routeToUrl = require(__HELPERS + 'routeToUrl')
+var redirectToLowercase = require(__CORE + 'middlewares/redirectToLowercase')
+var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
+var redirectTrailingSlash = require(__CORE + 'middlewares/redirectTrailingSlash')
+var routeToUrl = require(__CORE + 'helpers/routeToUrl')
 var addToRouter = require(__CORE + 'addToRouter')
 
-module.exports = Application
+module.exports = createApplication
 
-function Application(routes)
+function createApplication(routes)
 {
     var app = Express()
     var router = Express.Router({caseSensitive: true, strict: true})
@@ -20,7 +20,7 @@ function Application(routes)
     app.set('strict routing', true)
     app.set('case sensitive routing', true)
     app.set('view engine', 'jade')
-    app.set('views', Path.join(__APP_PUBLIC, 'views'))
+    app.set('views', Path.join(__APP, 'views'))
 
     app.use(redirectToLowercase)
     app.use(setXhtmlMime)
@@ -33,9 +33,5 @@ function Application(routes)
         }
     )
 
-    this.getApp =
-        function getApp()
-        {
-            return app
-        }
+    return app
 }

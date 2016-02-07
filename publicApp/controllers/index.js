@@ -1,7 +1,7 @@
 var statics = require('./statics')
 var guides = require('./guides')
 
-var disableQueryString = require(__MIDDLEWARES + 'disableQueryString')
+var disableQueryString = require(__CORE + 'middlewares/disableQueryString')
 
 module.exports = [
 /********** STATICS **********/

@@ -2,8 +2,8 @@
 
 var parseUrl = require('url').parse
 
-var toSlug = require(__HELPERS + 'toSlug')
-var db = require(__APP_PUBLIC + 'database') 
+var toSlug = require(__CORE + 'helpers/toSlug')
+var db = require(__APP + 'database') 
 
 module.exports.showAll =
     function (request, response)

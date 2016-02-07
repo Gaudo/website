@@ -1,4 +1,4 @@
-var toSlug = require(__HELPERS + 'toSlug')
+var toSlug = require(__CORE + 'helpers/toSlug')
 
 module.exports =
     function (routes)
