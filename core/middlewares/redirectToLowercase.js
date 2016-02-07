@@ -29,6 +29,6 @@ module.exports =
             qs = parsedUrl.search.toLowerCase()
 
 
-        response.redirect(lowerPathName + qs)
+        response.redirect(301, lowerPathName + qs)
     }
 

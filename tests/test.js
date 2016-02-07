@@ -14,26 +14,24 @@ global.__APP = Path.join(__ROOT, 'publicApp/')
 global.__LIBS = Path.join(__ROOT, 'libs/')
 global.__CORE = Path.join(__ROOT, 'core/')
 
-describe('public', function() {
-    describe('#Application(routes)', function () {
-        var createApplication = require(__APP + 'createApplication')
+
+describe('#checking routes', function () {
+    var createApplication = require(__APP + 'createApplication')
+
+    it('unknown GET path should return "application/xhtml+xml" 404', function (done) {
         var app = createApplication([])
+        request(app)
+          .get('/whatever')
+          .expect('Content-Type', "application/xhtml+xml")
+          .expect(404, done)
+    })
 
-        it('unknown path should return "application/xhtml+xml" 404', function () {
-            request(app)
-              .get('/whatever')
-              .expect('Content-Type', "application/xhtml+xml")
-              .expect(404)
-              .end(function(err, res){
-                if (err) throw err;
-              })
-        })
 
+    it('known GET path should return "application/xhtml+xml" 200', function (done) {
         var routes = [
-            {
-              method: 'get',
+            { method: 'get',
               name: 'home',
-              pattern: '/',
+              pattern: '/a',
               generator: '/',
               middlewares: [],
               callback: function(req, res) { res.end() }
@@ -41,14 +39,66 @@ describe('public', function() {
         ]
 
         var app = createApplication(routes)
-        it('valid GET path should return "application/xhtml+xml" 200', function () {
-            request(app)
-              .get('/')
-              .expect('Content-Type', "application/xhtml+xml")
-              .expect(200)
-              .end(function(err, res){
-                if (err) throw err;
-              })
-        });
+        request(app)
+          .get('/a')
+          .expect('Content-Type', "application/xhtml+xml")
+          .expect(200, done)
+    })
+
+    it('known GET path without trailing slash should redirect to path with slash', function (done) {
+
+        var routes = [
+            { method: 'get',
+              name: 'home',
+              pattern: '/asd/',
+              generator: '/',
+              middlewares: [],
+              callback: function(req, res) { res.end() }
+            }
+        ]
+
+        var app = createApplication(routes)
+        request(app)
+          .get('/asd')
+          .expect(301)
+          .expect('Location', '/asd/', done)
+    })
+
+    it('known GET path with trailing slash should redirect to path without slash', function (done) {
+
+        var routes = [
+            { method: 'get',
+              name: 'home',
+              pattern: '/asd',
+              generator: '/',
+              middlewares: [],
+              callback: function(req, res) { res.end() }
+            }
+        ]
+
+        var app = createApplication(routes)
+        request(app)
+          .get('/asd/')
+          .expect(301)
+          .expect('Location', '/asd', done)
+    })
+
+    it('GET path with uppercase should redirect to path in lowercase', function (done) {
+
+        var routes = [
+            { method: 'get',
+              name: 'home',
+              pattern: '/aaaa',
+              generator: '/',
+              middlewares: [],
+              callback: function(req, res) { res.end() }
+            }
+        ]
+
+        var app = createApplication(routes)
+        request(app)
+          .get('/AaaA')
+          .expect(301)
+          .expect('Location', '/aaaa', done)
     })
 })
