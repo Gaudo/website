@@ -3,6 +3,13 @@ extends ../layout.jade
 block vars
     -title= guide.title
 
+block css
+    link(rel="stylesheet" type="text/css" href="/public/css/github.css")
+
+block js
+    script(src="/public/js/highlight.min.js")
+    script hljs.initHighlightingOnLoad();
+
 block content
     article.GaudoNet__article
         header
