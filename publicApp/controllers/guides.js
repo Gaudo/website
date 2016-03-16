@@ -19,14 +19,17 @@ module.exports.showAll =
     }
 
 module.exports.show =
-    function (request, response)
+    function (request, response, next)
     {
         var sql = 'SELECT title, bodyHtml as body, created, modified FROM guides WHERE id = ?'
         db.get(sql, [request.params.id],
             function (err, row)
             {
                 if(err)
-                    throw err
+                    throw err              
+
+                if(row === undefined)
+                    return next();
 
                 row.created = new Date(row.created + ' UTC')
 
