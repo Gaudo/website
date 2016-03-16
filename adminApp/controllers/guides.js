@@ -54,6 +54,11 @@ module.exports.show =
 module.exports.add =
     function (request, response, next)
     {
+        request.body.title = request.body.title.trim()
+
+        if(request.body.title.length === 0)
+            return response.status(500).end()
+
         var sql = "INSERT INTO guides(title, body, bodyHtml, created, modified) values (?, ?, ?, CURRENT_TIMESTAMP, NULL)"
         db.run(sql, [request.body.title, request.body.body, Marked(request.body.body)],
             function(err)
