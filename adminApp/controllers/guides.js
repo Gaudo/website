@@ -1,7 +1,7 @@
 'use strict'
 
 var Marked = require('marked')
-var renderer = new marked.Renderer();
+var renderer = new Marked.Renderer();
 renderer.br =
     function()
     {
