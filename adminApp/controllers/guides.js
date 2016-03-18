@@ -1,6 +1,25 @@
 'use strict'
 
 var Marked = require('marked')
+var renderer = new marked.Renderer();
+renderer.br =
+    function()
+    {
+        return "<br />"
+    }
+
+Marked.setOptions({
+  renderer: renderer,
+  gfm: true,
+  tables: true,
+  breaks: true,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
+
 var parseUrl = require('url').parse
 
 var db = require(__APP + 'database') 
