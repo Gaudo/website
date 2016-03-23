@@ -22,3 +22,9 @@ module.exports.aboutMe =
 
         response.render('about_me', {'years': years})
     }
+
+module.exports.privacy =
+    function(request, response)
+    {
+        response.render('privacy_policy')
+    }

@@ -8,6 +8,7 @@ module.exports = [
 { method: 'get', name: 'home',    pattern: '/',           generator: '/',           middlewares: [disableQueryString], callback: statics.home },
 { method: 'get', name: 'aboutMe', pattern: '/chi-sono',   generator: '/chi-sono',   middlewares: [disableQueryString], callback: statics.aboutMe },
 { method: 'get', name: 'skills',  pattern: '/competenze', generator: '/competenze', middlewares: [disableQueryString], callback: statics.skills },
+{ method: 'get', name: 'privacyPolicy',  pattern: '/privacy', generator: '/privacy', middlewares: [disableQueryString], callback: statics.privacy },
 /******* STATICS END *********/
 
 /********** GUIDES **********/

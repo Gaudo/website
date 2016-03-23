@@ -1,0 +1,94 @@
+&__cookieLawBanner {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background-color: #000;
+    color: #DDD;
+    text-align:center;
+    width: 100%;
+    padding: .3rem 0 .3rem 0;
+    margin: 0;
+}
+
+&__siteWrapper {
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+&__siteHeader {
+    display: flex;
+    background-image: url(../img/back.png);
+    border: .1rem solid black;
+    padding: .5rem;
+}
+
+&__siteAuthor {
+    font: 100% $font-sans;
+    font-size: 1rem;
+    color: rgba(255,255,255, 0.85);
+    font-weight: bold;
+
+    &_name {
+        font-size: 1.5rem;
+        margin:0;
+        margin-bottom: 1rem;
+    }
+    
+    &_jobs {
+        font-size: .8rem;
+        margin: 0;
+        padding-left: 1rem;
+        font-weight: none;
+    }
+
+    &_picture {
+        height: 7rem;
+        width: 7rem;
+        margin-right: 2rem;
+        @extend .GaudoNet__picture;
+
+        &_image {
+            @extend .GaudoNet__picture_image;
+        }
+    }
+}
+
+&__siteGradient {
+    box-shadow: 0 0 1rem .1rem #000;
+}
+
+&__siteMenu {
+    font: 100% $font-sans;
+    display: flex;
+    background: linear-gradient(to bottom, #83553A 0%, #222 100%); /* W3C */
+    height: 2.3rem;
+    list-style-type: none;
+    justify-content: flex-start;
+    margin: 0;
+    padding:0;
+}
+
+&__siteContent {
+    padding: 1.2rem;
+    background-color: #fff;
+    min-height: 30rem;
+    color: #111;
+}
+
+&__siteFooter {
+    text-align: center;
+    padding: 1rem;
+}
+
+&__siteBanners {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+&__body {
+    background-image: url('/public/img/back3.png');
+    background-repeat: repeat;
+    margin: 0;
+    padding: 0;
+}

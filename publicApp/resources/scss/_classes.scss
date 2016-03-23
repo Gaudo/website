@@ -1,0 +1,124 @@
+&__article_date {
+    margin: 0;
+    padding: 0;
+    font-size: .8rem;
+}
+
+&__article {
+    font-family: $font-sans;
+}
+
+&__article code {
+    background-color: #eee;
+    white-space: nowrap;
+}
+
+&__siteContent_list {
+    font-family: $font-sans;
+    padding-left:2rem;
+    
+}
+
+&__siteContent_list_item {
+    margin: 0 0 .5rem 0;
+}
+
+&__siteContent_rightPicture {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    float: right;
+    margin: 0 0 2rem 2rem; 
+}    
+
+&__siteContent_image {
+    display: inline-block;
+    max-width: 250px;
+    max-height: 250px;
+    border: 1px solid #000;
+    border-radius: 12px
+}    
+
+&__siteContent_title {
+    margin: 0 0 1rem 0;
+    padding: .5rem;
+    font-size: 2rem;
+    display: block;
+    color: #533524;
+    background-color: #eeddcc;
+    font-family: $font-serif
+}    
+
+
+&__siteContent_paragraph {
+    margin: 0 0 1.5rem 0;
+    font: 100% $font-sans;
+}
+
+&__picture {
+    text-align: center;
+    padding: 2px;
+    background-color: #000;
+
+    &_image {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
+
+&__siteMenu {
+    &_submenu {
+        display: none;
+    }
+
+    &_item {
+        font-weight: bold;
+    }
+
+    &_item-selected {
+        @extend .GaudoNet__siteMenu_item;
+        background-color: #1a1a1a;
+    }
+
+    &_link {
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        padding: 0.6rem;
+    }
+    
+    &_link-noref {
+        color: #fff;
+        display: inline-block;
+        padding: 0.6rem;
+        cursor: default;
+    }
+}
+
+&__siteFooter {
+    &_line {
+        color: #fff;
+        font: 100% $font-sans;
+        margin:0;
+    }
+}
+
+&__agplLogo {
+    background-color: #fff;
+}
+
+&__siteBanners_banner {
+    display: inline-block;
+    margin: 0;
+    margin-right: .5rem;
+    padding: 0;
+
+}
+
+&__siteBanners_banner_logo {
+    height: 1.8rem;
+}
+
+&__privacyPolicy {
+    font-weight: bold;
+}

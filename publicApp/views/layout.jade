@@ -1,15 +1,20 @@
 block vars
 
-html(xmlns="http://www.w3.org/1999/xhtml")
+html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="it")
     head
-        meta(name=viewport content="width=device-width, initial-scale=1")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         title= title+' - '+'Francesco Gaudenzi'
 
         link(rel="stylesheet" type="text/css" href="/public/css/style.css")
         block css
+        script(type="text/javascript" src="/public/js/jquery.min.js")
+        script(type="text/javascript" src="/public/js/jquery.cookie.min.js")
+        script(type="text/javascript" src="/public/js/cookieLaw.js")
         block js
-    body
+    body#GaudoNet__body
+        #GaudoNet__cookieLawBanner(style="display: none") Questo sito fa uso di cookie. Per ulteriori informazioni leggi la <a href="#{routeToUrl('privacyPolicy')}" id="GaudoNet__cookieLawPolicy">cookie policy</a>. Proseguendo la navigazione acconsenti all'uso dei cookie. <a href="#">Accetta</a>
         #GaudoNet__siteWrapper
+
             #GaudoNet__siteGradient
                 header#GaudoNet__siteHeader
                     #GaudoNet__siteAuthor_picture
@@ -37,15 +42,10 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                     block content
 
             footer#GaudoNet__siteFooter
+
                 ul#GaudoNet__siteBanners
                     li.GaudoNet__siteBanners_banner
-                        a(href="https://www.gnu.org/licenses/agpl-3.0.html")                
-                            img(class="GaudoNet__agplLogo GaudoNet__siteBanners_banner_logo" src="https://www.gnu.org/graphics/agplv3-88x31.png" alt="AGPLv3")
-                    li.GaudoNet__siteBanners_banner               
-                        a(href="https://nodejs.org")
-                            img(class="GaudoNet__siteBanners_banner_logo" src="https://nodejs.org/static/images/logos/nodejs-dark.png" alt="Node.js")
+                        a(href="/privacy") Privacy policy
+                    li.GaudoNet__siteBanners_banner
+                        a(href="https://bitbucket.org/gaudo/gaudo.net/src") Visualizza codice sorgente
 
-                    li.GaudoNet__siteBanners_banner      
-                        a(href="https://debian.org")         
-                            img(class="GaudoNet__siteBanners_banner_logo" src="https://www.debian.org/logos/button-4.gif" alt="Debian")
-                p.GaudoNet__siteFooter_line Source code @ <a href="https://bitbucket.org/gaudo/gaudo.net">https://bitbucket.org/gaudo/gaudo.net</a>
