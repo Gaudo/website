@@ -31,5 +31,3 @@ if(!Filesystem.existsSync(SOCKET_DIR))
     Filesystem.mkdirSync(SOCKET_DIR, 755)
 
 server.listen(socketPath)
-    
-
