@@ -19,7 +19,18 @@ module.exports =
         }
 
         var lowerPathName = parsedUrl.pathname.toLowerCase()
-        var match = testMatchingRoute(request.app._router.stack, method, lowerPathName)
+
+        hasSlash = lowerPathName.charAt(lowerPathName.length - 1) === '/';
+        
+        var match = false
+        if(hasSlash) {
+            match = testMatchingRoute(request.app._router.stack, method, lowerPathName) ||
+                    testMatchingRoute(request.app._router.stack, method, lowerPathName.slice(0, -1))
+        } else {
+            match = testMatchingRoute(request.app._router.stack, method, lowerPathName) ||
+                    testMatchingRoute(request.app._router.stack, method, lowerPathName+'/')
+        }
+
         if(!match) {
             return next()
         }
