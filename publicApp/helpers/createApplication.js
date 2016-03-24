@@ -1,9 +1,8 @@
 var Express = require('express')
 var Path = require('path')
 
-var redirectToLowercase = require(__CORE + 'middlewares/redirectToLowercase')
+var fixUri = require(__CORE + 'middlewares/fixUri')
 var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
-var redirectTrailingSlash = require(__CORE + 'middlewares/redirectTrailingSlash')
 var routeToUrl = require(__CORE + 'helpers/routeToUrl')
 var addToRouter = require(__CORE + 'addToRouter')
 
@@ -22,10 +21,9 @@ function createApplication(routes)
     app.set('view engine', 'jade')
     app.set('views', Path.join(__APP, 'views'))
 
-    app.use(redirectToLowercase)
     app.use(setXhtmlMime)
     app.use(router)
-    app.use(redirectTrailingSlash)
+    app.use(fixUri)
     app.use(
         function (req, res)
         {

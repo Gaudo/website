@@ -26,7 +26,7 @@ function createApplication(routes)
     app.use(BodyParser.json())
     app.use(setXhtmlMime)
     app.use(router)
-    app.use(redirectTrailingSlash)
+    app.use(fixUri)
     app.use(
         function (req, res)
         {
