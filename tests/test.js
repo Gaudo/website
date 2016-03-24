@@ -16,7 +16,7 @@ global.__CORE = Path.join(__ROOT, 'core/')
 
 
 describe('#checking routes', function () {
-    var createApplication = require(__APP + 'createApplication')
+    var createApplication = require(__APP + 'helpers/createApplication')
 
     it('unknown GET path should return "application/xhtml+xml" 404', function (done) {
         var app = createApplication([])
