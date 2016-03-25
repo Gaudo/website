@@ -20,6 +20,7 @@ function createApplication(routes)
     app.set('case sensitive routing', true)
     app.set('view engine', 'jade')
     app.set('views', Path.join(__APP, 'views'))
+    app.set('x-powered-by', false)
 
     app.use(setXhtmlMime)
     app.use(router)
