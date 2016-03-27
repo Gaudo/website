@@ -13,7 +13,7 @@ if(globalsDefined)
     throw new Error('ERROR: GLOBALS ALREADY EXIST!!')
 
 global.__ROOT = Path.dirname(__dirname) + '/'
-global.__APP = Path.join(__ROOT, 'publicApp/')
+global.__APP = Path.join(__ROOT, 'appPublic/')
 global.__LIBS = Path.join(__ROOT, 'libs/')
 global.__CORE = Path.join(__ROOT, 'core/')
 
