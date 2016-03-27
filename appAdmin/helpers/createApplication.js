@@ -2,9 +2,8 @@ var Express = require('express')
 var Path = require('path')
 var BodyParser = require('body-parser')
 
-var redirectToLowercase = require(__CORE + 'middlewares/redirectToLowercase')
+var fixUri = require(__CORE + 'middlewares/fixUri')
 var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
-var redirectTrailingSlash = require(__CORE + 'middlewares/redirectTrailingSlash')
 var routeToUrl = require(__CORE + 'helpers/routeToUrl')
 var addToRouter = require(__CORE + 'addToRouter')
 
