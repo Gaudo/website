@@ -106,12 +106,16 @@
     background-color: #fff;
 }
 
-&__siteBanners_banner {
+&__siteBottomLinksList_item {
     display: inline-block;
     margin: 0;
     margin-right: .5rem;
     padding: 0;
+}
 
+&__siteBottomLinksList_link {
+    font-family: $font-sans;
+    color: #fff;
 }
 
 &__siteBanners_banner_logo {
