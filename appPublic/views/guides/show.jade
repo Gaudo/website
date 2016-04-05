@@ -19,5 +19,5 @@ block content
             if(guide.modified)
                 p.GaudoNet__guide_date.
                     Modificato il <time datetime="#{guide.modified.toLocalISOString()}">#{guide.modified.getDate()+ '/' +guide.modified.getMonth()+1+ '/' +guide.modified.getFullYear()+ ' alle ' +guide.modified.getHours()+ ':' +guide.modified.getMinutes()}</time>
-                     
-        | !{guide.body}
+        #GaudoNet__guide.
+            !{guide.body}
