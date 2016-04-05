@@ -5,11 +5,11 @@ block vars
     -selected= "Guide"
 
 block content
-    h1.GaudoNet__siteContent_title Guide
+    h1.GaudoNet__pageTitle Guide
     ul
         if guides[0]
             each guide in guides
                 li
-                    a(href="#{routeToUrl('guides-show', {id: guide.id, title: guide.title})}" class="") <strong>#{guide.title}</strong>
+                    a(href="#{routeToUrl('guides-show', {id: guide.id, title: guide.title})}") <strong>#{guide.title}</strong>
         else
             p Non sono presenti record

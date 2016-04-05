@@ -1,0 +1,53 @@
+html {
+    font-family: $font-sans;
+}
+
+.GaudoNet__pageTitle {
+    margin: 0 0 1rem 0;
+    padding: .5rem;
+    font-size: 2rem;
+    display: block;
+    color: #533524;
+    background-color: #eeddcc;
+    font-family: $font-serif
+}
+
+#GaudoNet__header {
+    display: flex;
+    background-image: url(/public/img/header-background.jpg);
+    border: .1rem solid black;
+    padding: .5rem;
+    justify-content: space-around;
+}
+
+@media (max-width: 548px)  {
+    #GaudoNet__header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+#GaudoNet__content {
+    padding: 1.2rem;
+    background-color: #fff;
+    min-height: 30rem;
+    color: #111;
+}
+
+#GaudoNet__footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+#GaudoNet__wrapper {
+    max-width: 42rem;
+    margin: 0 auto;
+    box-shadow: 0 0 1rem .1rem #000;
+}
+
+#GaudoNet__body {
+    background-image: url('/public/img/wooden-background.jpg');
+    background-repeat: repeat;
+    margin: 0;
+    padding: 0;
+}

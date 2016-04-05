@@ -11,13 +11,13 @@ block js
     script hljs.initHighlightingOnLoad();
 
 block content
-    article.GaudoNet__article
+    article
         header
-            h1.GaudoNet__siteContent_title= guide.title
-            p.GaudoNet__article_date.
+            h1.GaudoNet__pageTitle= guide.title
+            p.GaudoNet__guide_date.
                 Pubblicato il <time datetime="#{guide.created.toLocalISOString()}">#{guide.created.getDate()+ '/' +guide.created.getMonth()+1+ '/' +guide.created.getFullYear()+ ' alle ' +guide.created.getHours()+ ':' +guide.created.getMinutes()}</time>
             if(guide.modified)
-                p.GaudoNet__article_date.
+                p.GaudoNet__guide_date.
                     Modificato il <time datetime="#{guide.modified.toLocalISOString()}">#{guide.modified.getDate()+ '/' +guide.modified.getMonth()+1+ '/' +guide.modified.getFullYear()+ ' alle ' +guide.modified.getHours()+ ':' +guide.modified.getMinutes()}</time>
                      
         | !{guide.body}

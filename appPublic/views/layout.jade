@@ -12,40 +12,54 @@ html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="it")
         script(type="text/javascript" src="/public/js/cookieLaw.js")
         block js
     body#GaudoNet__body
-        #GaudoNet__cookieLawBanner(style="display: none") Questo sito fa uso di cookie. Per ulteriori informazioni leggi la <a href="#{routeToUrl('privacyPolicy')}" id="GaudoNet__cookieLawPolicy">cookie policy</a>. Proseguendo la navigazione acconsenti all'uso dei cookie. <a href="#">Accetta</a>
-        #GaudoNet__siteWrapper
-
-            #GaudoNet__siteGradient
-                header#GaudoNet__siteHeader
-                    #GaudoNet__siteAuthor_picture
-                        img(id="GaudoNet__siteAuthor_picture_image" alt="Foto di Francesco Gaudenzi" src="/public/img/gaudo.jpg")
-                    #GaudoNet__siteAuthor
-                        h1#GaudoNet__siteAuthor_name Francesco Gaudenzi
-                        ul#GaudoNet__siteAuthor_jobs
-                            li Web Developer
-                            li Programmatore
-                            li Studente di informatica
-                            li Gamer
+        #GaudoNet__cookieLawBanner Questo sito fa uso di cookie. Per ulteriori informazioni leggi la <a href="#{routeToUrl('privacyPolicy')}" id="GaudoNet__cookieLawPolicy">cookie policy</a>. Proseguendo la navigazione acconsenti all'uso dei cookie. <a href="#">Accetta</a>
+        #GaudoNet__wrapper
+            header#GaudoNet__header
+                img(id="GaudoNet__author_image" alt="Foto di Francesco Gaudenzi" src="/public/img/gaudo.jpg")
+                div#GaudoNet__author_nameAndJobs
+                    h1#GaudoNet__author_name Francesco Gaudenzi
+                    ul#GaudoNet__author_jobs
+                        li Web Developer
+                        li Programmatore
+                        li Studente di informatica
+                        li Gamer
                 
-                nav
-                    ul#GaudoNet__siteMenu
-                        -var main_menu = {"Home": routeToUrl('home'), "Guide": routeToUrl('guides-showAll'), "Competenze": routeToUrl('skills'), "Chi sono": routeToUrl('aboutMe')}
-                        each key,item in main_menu
-                            if selected === item
-                                li.GaudoNet__siteMenu_item-selected
-                                   span(class="GaudoNet__siteMenu_link-noref")= item
-                            else
-                                li.GaudoNet__siteMenu_item
-                                    a(href="#{key}" class="GaudoNet__siteMenu_link")= item
+                ul#GaudoNet__author_social
+                    li#GaudoNet__emailIcon
+                        a.GaudoNet__socialIcon_link(href="https://www.google.com/recaptcha/mailhide/d?k=018CuaWnTFBB6frcYDLBdu1g==&c=CnNlY0KJejIGbBhEYHwdRaQqFAhcy9vVqYovVMew__U=")
+                            span.GaudoNet__socialIcon_hiddenText Email
+                    li#GaudoNet__facebookIcon
+                        a.GaudoNet__socialIcon_link(href="https://www.facebook.com/francesco.gaudenzi.7")
+                            span.GaudoNet__socialIcon_hiddenText Profilo Facebook
+                    li#GaudoNet__googlePlusIcon
+                        a.GaudoNet__socialIcon_link(href="https://plus.google.com/u/0/+FrancescoGaudenzi")
+                            span.GaudoNet__socialIcon_hiddenText Profilo Facebook
+                    li#GaudoNet__twitterIcon
+                        a.GaudoNet__socialIcon_link(href="https://twitter.com/fgaudo")
+                            span.GaudoNet__socialIcon_hiddenText Profilo Facebook
+                    li#GaudoNet__instagramIcon
+                        a.GaudoNet__socialIcon_link(href="https://www.instagram.com/fgaudo/")
+                            span.GaudoNet__socialIcon_hiddenText Profilo Facebook
+            
+            nav
+                ul#GaudoNet__mainMenu
+                    -var main_menu = {"Home": routeToUrl('home'), "Guide": routeToUrl('guides-showAll'), "Competenze": routeToUrl('skills'), "Chi sono": routeToUrl('aboutMe')}
+                    each key,item in main_menu
+                        if selected === item
+                            li.GaudoNet__mainMenu_item-selected
+                               span(class="GaudoNet__mainMenu_link-noref")= item
+                        else
+                            li.GaudoNet__mainMenu_item
+                                a(href="#{key}" class="GaudoNet__mainMenu_link")= item
 
-                main#GaudoNet__siteContent
-                    block content
+            main#GaudoNet__content
+                block content
 
-            footer#GaudoNet__siteFooter
+        footer#GaudoNet__footer
 
-                ul#GaudoNet__siteBottomLinksList
-                    li.GaudoNet__siteBottomLinksList_item
-                        a.GaudoNet__siteBottomLinksList_link(href="/privacy") Privacy policy
-                    li.GaudoNet__siteBottomLinksList_item
-                        a.GaudoNet__siteBottomLinksList_link(href="https://bitbucket.org/gaudo/gaudo.net/src") Visualizza codice sorgente
+            ul#GaudoNet__bottomLinksList
+                li.GaudoNet__bottomLinksList_item
+                    a.GaudoNet__bottomLinksList_link(href="/privacy") Privacy policy
+                li.GaudoNet__bottomLinksList_item
+                    a.GaudoNet__bottomLinksList_link(href="https://bitbucket.org/gaudo/gaudo.net/src") Visualizza codice sorgente
 

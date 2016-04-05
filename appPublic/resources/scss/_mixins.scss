@@ -1,0 +1,5 @@
+@mixin socialIcon($edge) {
+    width: $edge;
+    height: $edge;
+    background-size: $edge $edge;
+}

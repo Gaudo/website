@@ -1,30 +1,13 @@
-$font-sans: Open Sans;
-$font-serif: Source Serif Pro;
+@import 'fonts';
+@import 'variables';
+@import 'mixins';
 
+@import 'pages/aboutMe';
+@import 'pages/guides';
+@import 'pages/skills';
 
-@font-face {
-    font-family: Open Sans;
-    src:
-        url('/public/fonts/Open-Sans-regular.woff2') format('woff2'),
-        url('/public/fonts/Open-Sans-regular.woff') format('woff');
-
-}
-
-@font-face {
-    font-family: Source Serif Pro;
-    src:
-        url('/public/fonts/Source-Serif-Pro-regular.woff2') format('woff2'),
-        url('/public/fonts/Source-Serif-Pro-regular.woff') format('woff');
-}
-
-html {
-    overflow-y:scroll;
-}
-
-.GaudoNet {
-    @import 'classes';
-}
-
-#GaudoNet {
-    @import 'ids';
-}
+@import 'widgets/author';
+@import 'widgets/bottomLinks';
+@import 'widgets/cookieLaw';
+@import 'widgets/mainMenu';
+@import 'layout';

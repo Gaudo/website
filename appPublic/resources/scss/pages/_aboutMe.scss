@@ -1,0 +1,22 @@
+.GaudoNet__aboutMe_picture {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    float: right;
+    margin: 0 0 2rem 2rem; 
+
+    @media (max-width: 470px)  {
+        float: none;
+        display: block;
+    }
+}    
+
+.GaudoNet__aboutMe_picture_image {
+    display: inline-block;
+    max-width: 250px;
+    max-height: 250px;
+    border: 1px solid #000;
+    border-radius: 12px
+}    
+
+
