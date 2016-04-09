@@ -10,7 +10,7 @@ module.exports =
             next();
             return;
         }
-            
+
         var parsedUrl = Url.parse(request.url)
         var lowerPathName = parsedUrl.pathname.toLowerCase()
         var qs = parsedUrl.search !== null ? parsedUrl.search.toLowerCase() : ''

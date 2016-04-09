@@ -29,7 +29,7 @@ module.exports.show =
                     throw err              
 
                 if(row === undefined)
-                    return next();
+                    return next(404);
 
                 row.created = new Date(row.created + ' UTC')
 
@@ -37,9 +37,8 @@ module.exports.show =
                     row.modified = new Date(row.modified + ' UTC')
 
                 var slugTitle = toSlug(row.title)
-
                 if(request.params.title === undefined || request.params.title !== slugTitle)
-                    return response.redirect('/guide/'+request.params.id +'/'+slugTitle)
+                    return response.redirectToRoute('guides-show', {id: request.params.id, title: slugTitle})
 
                 response.render('guides/show', {'guide': row})
             }
