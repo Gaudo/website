@@ -3,7 +3,7 @@ var Path = require('path')
 
 var fixUri = require(__CORE + 'middlewares/fixUri')
 var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
-var setRedirectToRoute = require(__APP + 'middlewares/setRedirectToRoute')
+var setRedirectToRoute = require(__CORE + 'middlewares/setRedirectToRoute')
 var createRouteToUrl = require(__CORE + 'helpers/createRouteToUrl')
 var addToRouter = require(__CORE + 'addToRouter')
 

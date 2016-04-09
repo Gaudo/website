@@ -7,9 +7,9 @@ module.exports = function(routes)
     function redirectToRoute(request, response, next)
     {
         response.redirectToRoute =
-            function redirectToRoute(name, params)
+            function redirectToRoute(status, name, params)
             {
-                response.redirect(routeToUrl(name, params))
+                response.redirect(status, routeToUrl(name, params))
             }
         
         next()

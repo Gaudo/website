@@ -38,7 +38,7 @@ module.exports.show =
 
                 var slugTitle = toSlug(row.title)
                 if(request.params.title === undefined || request.params.title !== slugTitle)
-                    return response.redirectToRoute('guides-show', {id: request.params.id, title: slugTitle})
+                    return response.redirectToRoute(301, 'guides-show', {id: request.params.id, title: slugTitle})
 
                 response.render('guides/show', {'guide': row})
             }
