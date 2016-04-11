@@ -4,7 +4,7 @@ var BodyParser = require('body-parser')
 
 var fixUri = require(__CORE + 'middlewares/fixUri')
 var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
-var routeToUrl = require(__CORE + 'helpers/routeToUrl')
+var createRouteToUrl = require(__CORE + 'helpers/createRouteToUrl')
 var addToRouter = require(__CORE + 'addToRouter')
 
 module.exports = createApplication
@@ -15,7 +15,7 @@ function createApplication(routes)
     var router = Express.Router({caseSensitive: true, strict: true})
 
     routes.forEach(addToRouter(router))
-    app.locals.routeToUrl = routeToUrl(routes)
+    app.locals.routeToUrl = createRouteToUrl(routes)
 
     app.set('strict routing', true)
     app.set('case sensitive routing', true)
