@@ -15,9 +15,9 @@ block content
         header
             h1.GaudoNet__pageTitle= guide.title
             p.GaudoNet__guide_date.
-                Pubblicato il <time datetime="#{guide.created.toLocalISOString()}">#{guide.created.getDate()+ '/' +guide.created.getMonth()+1+ '/' +guide.created.getFullYear()+ ' alle ' +guide.created.getHours()+ ':' +guide.created.getMinutes()}</time>
+                Pubblicato il <time datetime="#{guide.created.toLocalISOString()}">#{guide.created.getDate()+ '/' +(guide.created.getMonth()+1)+ '/' +guide.created.getFullYear()+ ' alle ' +guide.created.getHours()+ ':' +guide.created.getMinutes()}</time>
             if(guide.modified)
                 p.GaudoNet__guide_date.
-                    Modificato il <time datetime="#{guide.modified.toLocalISOString()}">#{guide.modified.getDate()+ '/' +guide.modified.getMonth()+1+ '/' +guide.modified.getFullYear()+ ' alle ' +guide.modified.getHours()+ ':' +guide.modified.getMinutes()}</time>
+                    Modificato il <time datetime="#{guide.modified.toLocalISOString()}">#{guide.modified.getDate()+ '/' +(guide.modified.getMonth()+1)+ '/' +guide.modified.getFullYear()+ ' alle ' +guide.modified.getHours()+ ':' +guide.modified.getMinutes()}</time>
         #GaudoNet__guide.
             !{guide.body}
