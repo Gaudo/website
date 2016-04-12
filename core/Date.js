@@ -1,11 +1,15 @@
 Date.prototype.toLocalISOString =
     function ()
     {
-        var month = this.getMonth()+1
-        var date = [this.getFullYear(), ('0'+ month).slice(-2), ('0'+ this.getDate()).slice(-2)]
+        var year = this.getFullYear()
+        var month = ('0' + (this.getMonth()+1)).slice(-2)
+        var day = ('0' + this.getDate()).slice(-2)
+        var date = [year, month, day]
         date = date.join('-')
 
-        var time = [this.getHours(), this.getMinutes()]
+        var hours = ('0' + this.getHours()).slice(-2)
+        var minutes = ('0' + this.getMinutes()).slice(-2)
+        var time = [hours, minutes]
         time = time.join(':')
 
         var offset = this.getTimezoneOffset()
