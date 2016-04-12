@@ -2,7 +2,7 @@ Date.prototype.toLocalISOString =
     function ()
     {
         var year = this.getFullYear()
-        var month = this.getMonth0()+1
+        var month = this.getMonth0()
         var day = this.getDate0()
         var date = [year, month, day]
         date = date.join('-')
@@ -32,7 +32,7 @@ Date.prototype.toLocalISOString =
 Date.prototype.getMonth0 =
     function ()
     {
-        return ('0' + this.getMonth()).slice(-2)
+        return ('0' + (this.getMonth()+1)).slice(-2)
     }
     
 Date.prototype.getDate0 =
