@@ -29,25 +29,25 @@ Date.prototype.toLocalISOString =
     }
 
 
-Date.prototype.getMonth0() =
+Date.prototype.getMonth0 =
     function ()
     {
         return ('0' + this.getMonth()).slice(-2)
     }
     
-Date.prototype.getDate0() =
+Date.prototype.getDate0 =
     function ()
     {
         return ('0' + this.getDate()).slice(-2)
     }
 
-Date.prototype.getHours0() =
+Date.prototype.getHours0 =
     function ()
     {
         return ('0' + this.getHours()).slice(-2)
     }
 
-Date.prototype.getMinutes0() =
+Date.prototype.getMinutes0 =
     function ()
     {
         return ('0' + this.getMinutes()).slice(-2)
