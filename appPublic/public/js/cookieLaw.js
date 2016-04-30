@@ -24,9 +24,14 @@ function closeCookieLawBanner()
     $("#GaudoNet__cookieLawBanner").css( "display", "none");
 }
 
-$(document).ready(function(){
+function showCookieLawBanner()
+{
+    $("body").append("<div id=\"GaudoNet__cookieLawBanner\">Questo sito fa uso di cookie. Per ulteriori informazioni leggi la <a href=\"/privacy\" id=\"GaudoNet__cookieLawPolicy\">cookie policy</a>. Proseguendo la navigazione acconsenti all'uso dei cookie. <a href=\"#\">Accetta</a></div>");
+}
 
+$(document).ready(function(){
     if(!isCookieLawAccepted()) {
+        showCookieLawBanner();
         $("#GaudoNet__cookieLawBanner").css( "display", "block");
 
         $(document).on("click.cookieLaw", "a, button, submit", function(event) {
