@@ -1,47 +1,45 @@
 var parseUrl = require('url').parse
 
 var toSlug = require(__CORE + 'helpers/toSlug')
-var db = require(__APP + 'database') 
+var guidesDao = require(__APP + 'daos/guidesDao') 
 
-module.exports.showAll =
-    function (request, response)
-    {
-        var sql = 'SELECT * FROM guides'
-        db.all(sql, [],
-            function (err, rows)
-            {
-                if(err)
-                    throw err
-            
-                response.render('guides/index', {'guides': rows})
-            }
-        )
-    }
+module.exports.showAll = showAll
+module.exports.show = show
 
-module.exports.show =
-    function (request, response, next)
-    {
-        var sql = 'SELECT title, bodyHtml as body, created, modified FROM guides WHERE id = ?'
-        db.get(sql, [request.params.id],
-            function (err, row)
-            {
-                if(err)
-                    throw err              
+function showAll(request, response)
+{      
+    guidesDao.showAll().then(
+        function(guides)
+        {
+            response.render('guides/index', {'guides': guides})
+        },
 
-                if(row === undefined)
-                    return next(404);
+        function (err)
+        {
+            return next(err)
+        }
+    )
+}
 
-                row.created = new Date(row.created + ' UTC')
+function show(request, response, next)
+{
+    guidesDao.show(parseInt(request.params.id)).then(
+        function (guide)
+        {
+            if(guide === null)
+                return next(404)
 
-                if(row.modified !== null)
-                    row.modified = new Date(row.modified + ' UTC')
+            var slugTitle = toSlug(guide.title)
+            if(request.params.title === undefined || request.params.title !== slugTitle)
+                return response.redirectToRoute(301, 'guides-show', {'id': id, 'title': slugTitle})
 
-                var slugTitle = toSlug(row.title)
-                if(request.params.title === undefined || request.params.title !== slugTitle)
-                    return response.redirectToRoute(301, 'guides-show', {id: request.params.id, title: slugTitle})
+            response.render('guides/show', {'guide': guide})
+        },
 
-                response.render('guides/show', {'guide': row})
-            }
-        )
-    }
+        function (err)
+        {
+            return next(err)
+        }
+    )
+}
 

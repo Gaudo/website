@@ -3,7 +3,10 @@ block vars
 html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="it")
     head
         meta(name="viewport" content="width=device-width, initial-scale=1")
-        title= title+' - '+'Francesco Gaudenzi'
+        if title
+            title= title+' | Francesco Gaudenzi - Freelance Full Stack Web Developer'
+        else
+            title Francesco Gaudenzi - Freelance Full Stack Web Developer
 
         link(rel="icon" href="/public/img/icon.png" type="image/png")
         link(rel="stylesheet" type="text/css" href="/public/css/style.css")

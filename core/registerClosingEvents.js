@@ -6,6 +6,7 @@ module.exports =
             process.on('uncaughtException',
                 function(err)
                 {
+                    console.log('******* UNCAUGHT EXCEPTION **********')
                     console.log(err)
                     server.close()
                 }                

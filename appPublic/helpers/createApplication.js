@@ -37,8 +37,15 @@ function createApplication(routes)
         function (err, req, res, next)
         {
             if(err !== 404)
-                next()
+                next(err)
             res.status(404).render('errors/404')
+        }
+    )
+    app.use(
+        function (err, req, res, next)
+        {
+            console.log(err.stack)
+            res.status(500).render('errors/500')
         }
     )
 

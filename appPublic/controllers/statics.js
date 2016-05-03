@@ -1,30 +1,34 @@
-module.exports.home =
-    function(request, response)
-    {
-        response.render('index')
-    }
+var guidesDao = require(__APP + 'daos/guidesDao')
+var gaudoDao = require(__APP + 'daos/gaudoDao')
 
-module.exports.skills =
-    function(request, response)
-    {
-        response.render('skills')
-    }
+module.exports.home = home
+module.exports.skills = skills
+module.exports.aboutMe = aboutMe
+module.exports.privacy = privacy
 
-module.exports.aboutMe =
-    function(request, response)
-    {
-        var birthday = {year: 1990, month: 12, day: 12}
-        var today = new Date()
-        var today = {year: today.getFullYear(), month: today.getMonth()+1, day: today.getDate()}
-        var years = today.year - birthday.year
-        if(today.month < birthday.month || (today.month === birthday.month && today.day < birthday.day))
-            --years
+function home(request, response)
+{
+    guidesDao.showAllLimit(3).then(
+        function (guides) { response.render('index', {'guides': guides}) },
+        function (err) { next(err) } 
+    )
+}
 
-        response.render('about_me', {'years': years})
-    }
+function skills(request, response)
+{
+    response.render('skills')
+}
 
-module.exports.privacy =
-    function(request, response)
-    {
-        response.render('privacy_policy')
-    }
+
+function aboutMe(request, response)
+{
+    gaudoDao.getAge().then(
+        function (years) { response.render('about_me', {'years': years}) },
+        function (err) { next(err) }
+    )
+}
+
+function privacy(request, response)
+{
+    response.render('privacy_policy')
+}
