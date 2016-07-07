@@ -1,7 +1,7 @@
 'use strict'
 
 var SOCKET_DIR = '/tmp/gaudo-net'
-var SOCKET_NAME = 'admin.sock'
+var SOCKET_NAME = 'default.sock'
 
 var Path = require('path')
 var Http = require('http')
@@ -12,8 +12,8 @@ var globalsDefined = global.__ROOT || global.__LIBS || global.__CORE || global._
 if(globalsDefined)
     throw new Error('ERROR: GLOBALS ALREADY EXIST!!')
 
-global.__ROOT = Path.dirname(__dirname) + '/'
-global.__APP = Path.join(__ROOT, 'appAdmin/')
+global.__ROOT = Path.dirname(Path.dirname(__dirname)) + '/'
+global.__APP = Path.join(__ROOT, 'appPublic/')
 global.__LIBS = Path.join(__ROOT, 'libs/')
 global.__CORE = Path.join(__ROOT, 'core/')
 
