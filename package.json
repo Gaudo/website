@@ -1,0 +1,26 @@
+{
+  "name": "gaudo.net",
+  "version": "1.0.0",
+  "description": "Web application written in Node.js which is divided in two parts:",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/gaudo/gaudo.net.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "homepage": "https://bitbucket.org/gaudo/gaudo.net#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta3",
+    "typescript": "^2.1.0-dev.20160828"
+  },
+  "devDependencies": {
+    "typescript": "^2.1.0-dev.20160828"
+  }
+}

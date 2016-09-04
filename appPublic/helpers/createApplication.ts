@@ -1,15 +1,13 @@
-var Express = require('express')
-var Path = require('path')
+import Express = require('express')
+import Path = require('path')
 
-var fixUri = require(__CORE + 'middlewares/fixUri')
-var setXhtmlMime = require(__CORE + 'middlewares/setXhtmlMime')
-var setRedirectToRoute = require(__CORE + 'middlewares/setRedirectToRoute')
-var createRouteToUrl = require(__CORE + 'helpers/createRouteToUrl')
-var addToRouter = require(__CORE + 'addToRouter')
+import fixUri = require('CORE/middlewares/fixUri')
+import setXhtmlMime = require('CORE/middlewares/setXhtmlMime')
+import setRedirectToRoute = require('CORE/middlewares/setRedirectToRoute')
+import createRouteToUrl = require('CORE/helpers/createRouteToUrl')
+import addToRouter = require('CORE/addToRouter')
 
-module.exports = createApplication
-
-function createApplication(routes)
+function createApplication(routes: any)
 {
     var app = Express()
     var router = Express.Router({caseSensitive: true, strict: true})
@@ -28,13 +26,13 @@ function createApplication(routes)
     app.use(router)
     app.use(fixUri)
     app.use(
-        function (req, res)
+        function (req: any, res: any)
         {
             res.status(404).render('errors/404')
         }
     )
     app.use(
-        function (err, req, res, next)
+        function (err: any, req: any, res: any, next: Function)
         {
             if(err !== 404)
                 next(err)
@@ -42,7 +40,7 @@ function createApplication(routes)
         }
     )
     app.use(
-        function (err, req, res, next)
+        function (err: any, req: any, res: any, next: Function)
         {
             console.log(err.stack)
             res.status(500).render('errors/500')

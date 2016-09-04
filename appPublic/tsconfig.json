@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+       "target": "es6",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "outDir": "../build",
+        "paths": {
+            "ROOT/*": ["../*"],
+            "APP/*": ["./*"],
+            "CORE/*": ["../core/*"],
+            "LIBS/*": ["../libs/*"]
+        }
+    },
+    "exclude": [
+    ]
+}
