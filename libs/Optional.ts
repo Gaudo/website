@@ -1,19 +1,25 @@
-class Optional<T> {
-    constructor(private element : T) 
-    {
-        
-    }
-
-    private isPresent() : boolean
-    {
-        return this.element !== undefined;
-    }
-
-    public get() : T
-    {
-        if (!this.isPresent()) {
-            throw new Error("No such element.");
+namespace util {
+    export class Optional<T> {
+        public constructor(private element : T)
+        {
+            util.assertInvalid(element);
         }
-        return this.element;
+
+        private isPresent() : boolean
+        {
+            return this.element !== undefined;
+        }
+
+        public ifPresentElse(
+            present : (data : T) => void,
+            notPresent : () => void
+                ): void
+        {
+            if (this.isPresent()) {
+                return present(this.element);
+            }
+
+            return notPresent();
+        }
     }
 }
