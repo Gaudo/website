@@ -1,25 +1,24 @@
-'use strict';
-
-import { toSlug } from 'CORE/helpers/toSlug';
-import { GuidesDao } from 'APP/daos/GuidesDao';
+import { GuidesRepository } from 'APP/repositories/GuidesRepository';
+import { Guide } from 'APP/domain/Guide';
 
 export class GuidesController {
 
-    public constructor(private guidesDao : GuidesDao)
+    public constructor(private guidesRepository : GuidesRepository)
     {}
 
     public async showAll(request: any, response: any, next : () => void)
         : Promise<void>
     {
-        const guides: any = await this.guidesDao.showAll();
+        const guides: any = await this.guidesRepository.showAll();
         response.render('guides/index', {'guides': guides});
     }
 
     public async show(request: any, response: any, next: (data : any) => void)
         : Promise<void>
     {
-        const optionalGuide : util.Optional<any> = await this.guidesDao.show(
-            parseInt(request.params.id, 10)
+        const optionalGuide : util.Optional<Guide> =
+            await this.guidesRepository.show(
+                parseInt(request.params.id, 10)
         );
 
         optionalGuide.ifPresentElse(

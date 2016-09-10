@@ -34,3 +34,5 @@ export const get : {
     : sqlite3.Database;
     (sql: string, ...params: any[]): sqlite3.Database;
 } = db.get;
+
+export const run : any = db.run;

@@ -1,31 +1,30 @@
-var toSlug = require(__CORE + 'helpers/toSlug')
-
-module.exports =
-    function (routes)
+export function createRouteToUrl(routes)
+{
+    function route(name, params)
     {
-        function route(name, params)
-        {
-            var generator
-            routes.some(
-                function (element)
-                {
-                    if (element.name !== name)
-                        return false
-                    
-                    generator = element.generator
-                    return true
+        var generator: any;
+        routes.some(
+            function (element:any)
+            {
+                if (element.name !== name) {
+                    return false;
                 }
-            )
-
-            for(var key in params) {
-                var value = params[key]
-                if (typeof value === 'string' || value instanceof String)
-                    value = toSlug(value)
-                generator = generator.replace('{'+key+'}', value)
+                
+                generator = element.generator;
+                return true;
             }
+        )
 
-            return generator
+        for(var key in params) {
+            var value = params[key];
+            if (typeof value === 'string') {
+                value = util.toSlug(value);
+            }
+            generator = generator.replace('{'+key+'}', value);
         }
 
-        return route
+        return generator;
     }
+
+    return route;
+}

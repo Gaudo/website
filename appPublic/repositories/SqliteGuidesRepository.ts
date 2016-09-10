@@ -1,8 +1,65 @@
-import { GuidesDao } from 'APP/daos/GuidesDao';
+import { SqlGuidesRepository } from 'APP/repositories/SqlGuidesRepository';
+import { GuideCommand } from 'APP/repositories/commands/GuideCommand';
+import { GuideQuery } from 'APP/repositories/queries/GuideQuery';
+import { Guide } from 'APP/domain/Guide';
+
 import * as db from 'APP/database';
 
-export class SqliteGuidesDao implements GuidesDao {
-    public showAll( params? : {limit?: number} ) : Promise<any[]>
+export class SqliteGuidesRepository implements SqlGuidesRepository {
+
+    public query(query : GuideQuery)
+        : Promise<Array<Guide>>
+    {
+        return new Promise<Array<Guide>>((
+                resolve : (data : any) => void,
+                reject : (err : any) => void
+                ) =>
+            {
+                db.each(query.sql(), [],
+                    (row: any) =>
+                    {
+                        row.created = new Date(row.created + ' UTC');
+
+                        if (row.modified !== undefined) {
+                            row.modified = new Date(row.modified + ' UTC');
+                        }
+                    },
+                    (err: any, num : number, rows: any) =>
+                    {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        resolve(rows);
+                    }
+                );
+            }
+        );
+    }
+
+    public execute(command : GuideCommand)
+        : Promise<void>
+    {
+        return new Promise<Array<Guide>>((
+                resolve : () => void,
+                reject : (err : any) => void
+                ) =>
+            {
+                db.run(command.sql(), [],
+                    (err: any) =>
+                {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    resolve();
+                });
+            }
+        );
+    }
+}
+
+ function showAll( params? : {limit?: number} ) : Promise<any[]>
     {
         if (params.limit === undefined) {
             return new Promise<any[]>(
@@ -44,7 +101,7 @@ export class SqliteGuidesDao implements GuidesDao {
         );
     }
 
-    public show(id: number) : Promise<any>
+    function show(id: number) : Promise<any>
     {
         if (id < 0) {
             throw new RangeError('Id must be a non-negative value');
@@ -80,4 +137,3 @@ export class SqliteGuidesDao implements GuidesDao {
             }
         );
     }
-}
